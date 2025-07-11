@@ -95,7 +95,6 @@ val<int64_t> castInt8ToInt64AddExpression2(val<int8_t> x) {
 	return y + x;
 }
 
-
 val<int32_t> incrementPost(val<int32_t> x) {
 	auto y = x++;
 	return y + x;
