@@ -14,3 +14,6 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/.. ${CMAKE_CURRENT_BINARY_DIR}/naut
 add_executable(demo foo.cpp)
 
 target_link_libraries(demo PRIVATE nautilus)
+
+add_executable(func func.cpp)
+target_link_libraries(func PRIVATE nautilus)
