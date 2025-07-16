@@ -1,15 +1,19 @@
 #pragma once
 
-#include "nautilus/val_concepts.hpp"
+#include <cstdlib>
+#include <exception>
+#include <nautilus/val_concepts.hpp>
 #include <cstdint>
 #include <iosfwd>
+#include <type_traits>
 #include <variant>
+#include <iostream>
 
 namespace nautilus {
 
 enum class Type : uint8_t { v, b, i8, i16, i32, i64, ui8, ui16, ui32, ui64, f32, f64, ptr };
 
-using ConstantLiteral = std::variant<bool, uint8_t, uint16_t, uint32_t, uint64_t, int8_t, int16_t, int32_t, int64_t, float, double, void*>;
+using ConstantLiteral = std::variant<bool, uint8_t, uint16_t, uint32_t, uint64_t, int8_t, int16_t, int32_t, int64_t, float, double, void*, long long>;
 
 namespace tracing {
 
@@ -48,7 +52,7 @@ struct TypeResolver<T> {
 			return Type::i16;
 		} else if constexpr (std::is_same_v<type, int32_t>) {
 			return Type::i32;
-		} else if constexpr (std::is_same_v<type, int64_t>) {
+		} else if constexpr (std::is_same_v<type, int64_t> || std::is_same_v<type, long long>) {
 			return Type::i64;
 		} else if constexpr (std::is_same_v<type, uint8_t>) {
 			return Type::ui8;
@@ -56,7 +60,7 @@ struct TypeResolver<T> {
 			return Type::ui16;
 		} else if constexpr (std::is_same_v<type, uint32_t>) {
 			return Type::ui32;
-		} else if constexpr (std::is_same_v<type, uint64_t> || std::is_same_v<type, size_t>) {
+		} else if constexpr (std::is_same_v<type, uint64_t> || std::is_same_v<type, size_t> || std::is_same_v<type, unsigned long long>) {
 			return Type::ui64;
 		} else if constexpr (std::is_same_v<type, float>) {
 			return Type::f32;
@@ -64,8 +68,11 @@ struct TypeResolver<T> {
 			return Type::f64;
 		} else if constexpr (std::is_pointer_v<type>) {
 			return Type::ptr;
-		} else {
+		} else if constexpr (std::is_void_v<type>) {
 			return Type::v;
+		} else {
+			std::cout << "ERROR: encountered unexpected type" << std::endl;
+			std::abort();
 		}
 	}
 };
