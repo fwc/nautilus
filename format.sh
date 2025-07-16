@@ -36,6 +36,7 @@ then
     # clang-format
     git ls-files -- '*.cpp' '*.hpp' \
       | grep --invert-match "^third_party" \
+      | grep --invert-match "^yarpgen-stuff/test_" \
       | xargs --max-args=10 --max-procs="$(nproc)" "$CLANG_FORMAT" -i
 
     # newline at eof
@@ -53,6 +54,7 @@ else
     # clang-format
     git ls-files -- '*.cpp' '*.hpp' \
       | grep --invert-match "^third_party" \
+      | grep --invert-match "^yarpgen-stuff" \
       | xargs --max-args=10 --max-procs="$(nproc)" "$CLANG_FORMAT" --dry-run -Werror \
       || FAIL=1
 
