@@ -26,6 +26,8 @@ project(nautilus VERSION 0.1)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(CMAKE_CXX_WARNINGS "-Wall -Wextra -pedantic-errors")
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_WARNINGS "-Wall -Wextra -pedantic-errors -Werror=extra-semi -Werror=extra -Werror=all -Werror=delete-non-virtual-dtor -Werror=deprecated -Werror=array-bounds -Werror=ignored-qualifiers -Werror=sign-compare")
@@ -65,9 +67,9 @@ else()
 endif()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Wpedantic-macros -Werror=integer-overflow -Werror=return-type -Werror=return-stack-address  -Werror=writable-strings")
+    set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Wpedantic-macros")
 else ()
-    set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Woverflow -Werror=return-type -Werror=return-local-addr  -Werror=write-strings -Wno-error=stringop-overflow")
+    set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Woverflow")
 endif ()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_WARNINGS} -fpermissive -fno-omit-frame-pointer")
 
