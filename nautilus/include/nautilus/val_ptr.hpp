@@ -46,6 +46,52 @@ public:
 		*rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((value))>::raw_type>::getRawValue(value);
 	}
 
+
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	void operator+=(T other) noexcept {
+		auto value = make_value<baseType>(other);
+
+		// TODO tracing
+
+		auto rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((ptr))>::raw_type>::getRawValue(ptr);
+		auto ourVal = val<baseType>(*rawPtr);
+		*rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((value))>::raw_type>::getRawValue(value + ourVal);
+	}
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	void operator+=(val<T> other) noexcept {
+		auto value = make_value<baseType>(other);
+
+		// TODO tracing
+
+		auto rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((ptr))>::raw_type>::getRawValue(ptr);
+		auto ourVal = val<baseType>(*rawPtr);
+		*rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((value))>::raw_type>::getRawValue(value + ourVal);
+	}
+
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	auto operator+(T other) noexcept {
+		auto value = make_value<baseType>(other);
+
+		// TODO tracing
+
+		auto rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((ptr))>::raw_type>::getRawValue(ptr);
+		auto ourVal = val<baseType>(*rawPtr);
+		return (value + ourVal);
+	}
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	auto operator+(val<T> other) noexcept {
+
+		// TODO tracing
+
+		auto rawPtr = details::RawValueResolver<typename std::remove_cvref_t<decltype((ptr))>::raw_type>::getRawValue(ptr);
+		auto ourVal = val<baseType>(*rawPtr);
+		return (other + ourVal);
+	}
+
 	template <class T>
 	    requires std::is_convertible_v<T, baseType>
 	void operator=(val<T> other) noexcept {
