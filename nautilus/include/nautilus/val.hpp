@@ -4,6 +4,7 @@
 #include "nautilus/val_concepts.hpp"
 #include <iostream>
 #include <memory>
+#include <type_traits>
 
 #ifdef ENABLE_TRACING
 
@@ -338,6 +339,13 @@ val<LHS> neg(val<LHS>& val) {
 	}
 
 DEFINE_BINARY_OPERATOR(+, add, is_fundamental_val, convertible_to_fundamental)
+
+template <typename LHS, typename RHS>
+	requires(is_fundamental_val<LHS> && is_fundamental_val_ref<RHS>)
+auto inline operator+(LHS&& left, RHS&& right) {
+	auto rV = (typename std::remove_reference<typename RHS::basic_type>) right;
+	return left + rV;
+}
 
 DEFINE_BINARY_OPERATOR(-, sub, is_fundamental_val, convertible_to_fundamental)
 

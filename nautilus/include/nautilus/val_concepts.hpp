@@ -24,6 +24,12 @@ concept is_fundamental_val = requires {
 };
 
 template <typename T>
+concept is_fundamental_val_ref = requires {
+	typename std::remove_reference_t<T>::basic_type; // Ensure T has a member type 'basic_type'
+	requires !std::is_enum_v<typename std::remove_reference_t<T>::basic_type> && std::is_fundamental_v<typename std::remove_reference<typename std::remove_reference_t<T>::basic_type>>; // Ensure 'basic_type' is integral
+};
+
+template <typename T>
 concept convertible_to_fundamental = !std::is_enum_v<T> && !is_fundamental_val<T> && (convertible_to_integral<T> || std::is_convertible_v<T, float> || std::is_convertible_v<T, double> || std::is_convertible_v<T, bool>);
 
 template <typename T>
