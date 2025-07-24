@@ -18,6 +18,9 @@ target_link_libraries(demo PRIVATE nautilus)
 add_executable(func func.cpp)
 target_link_libraries(func PRIVATE nautilus)
 
+add_executable(simple simple.cpp)
+target_link_libraries(simple PRIVATE nautilus)
+
 add_executable(test_1 test_1/naut.cpp)
 target_link_libraries(test_1 PRIVATE nautilus)
 add_executable(test_2 test_2/naut.cpp)
