@@ -1,9 +1,7 @@
 #pragma once
 
-#include "nautilus/static.hpp"
 #include "nautilus/val_concepts.hpp"
-#include <iostream>
-#include <memory>
+#include <type_traits>
 
 #ifdef ENABLE_TRACING
 
