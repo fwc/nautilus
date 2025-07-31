@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 14
-Invocation: ./yarpgen --seed=14 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_14
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=14
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -63,6 +64,7 @@ void test(val<long long int> var_0, val<unsigned long long int> var_1, val<unsig
         } 
     } 
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -128,12 +130,12 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_10);
-    hash(&seed, var_11);
-    hash(&seed, var_12);
-    hash(&seed, var_13);
-    hash(&seed, var_14);
-    hash(&seed, var_15);
+    value_mismatch |= var_10 != 0ULL;
+    value_mismatch |= var_11 != (short)1;
+    value_mismatch |= var_12 != (bool)0;
+    value_mismatch |= var_13 != 12706738889033738465ULL;
+    value_mismatch |= var_14 != 0U;
+    value_mismatch |= var_15 != 9013671897496007388LL;
     for (size_t i_0 = 0; i_0 < 12; ++i_0) 
         for (size_t i_1 = 0; i_1 < 12; ++i_1) 
             for (size_t i_2 = 0; i_2 < 12; ++i_2) 
@@ -141,7 +143,7 @@ void checksum() {
                     for (size_t i_4 = 0; i_4 < 12; ++i_4) 
                         for (size_t i_5 = 0; i_5 < 12; ++i_5) 
                             for (size_t i_6 = 0; i_6 < 12; ++i_6) 
-                                hash(&seed, arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] [i_6] );
+                                value_mismatch |= arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] [i_6] != (signed char)43 && arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] [i_6] != (signed char)122 && arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] [i_6] != (signed char)43 && arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] [i_6] != (signed char)94;
 }
 int main() {
   init();
@@ -152,5 +154,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_0, var_1, var_2, var_3, var_4, var_5, var_7, var_8, var_9, zero, &var_10, &var_11, &var_12, &var_13, &var_14, &var_15);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }

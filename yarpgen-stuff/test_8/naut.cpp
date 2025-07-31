@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 8
-Invocation: ./yarpgen --seed=8 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_8
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=8
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -52,6 +53,7 @@ void test(val<int> var_0, val<unsigned short> var_2, val<unsigned int> var_3, va
     *var_18 = ((/* implicit */val<short>) ((((/* implicit */val<unsigned int>) (~(((val<int>) var_8))))) * (((((/* implicit */val<unsigned int>) ((/* implicit */val<int>) var_7))) / (var_3)))));
     *var_19 = ((/* implicit */val<unsigned long long int>) min((var_19), (((/* implicit */val<unsigned long long int>) var_7))));
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -112,23 +114,23 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_15);
-    hash(&seed, var_16);
-    hash(&seed, var_17);
-    hash(&seed, var_18);
-    hash(&seed, var_19);
+    value_mismatch |= var_15 != (bool)1;
+    value_mismatch |= var_16 != 2308957559U;
+    value_mismatch |= var_17 != (short)21581;
+    value_mismatch |= var_18 != (short)0;
+    value_mismatch |= var_19 != 21581ULL;
     for (size_t i_0 = 0; i_0 < 16; ++i_0) 
         for (size_t i_1 = 0; i_1 < 16; ++i_1) 
             for (size_t i_2 = 0; i_2 < 16; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 16; ++i_3) 
-                    hash(&seed, arr_7 [i_0] [i_1] [i_2] [i_3] );
+                    value_mismatch |= arr_7 [i_0] [i_1] [i_2] [i_3] != (unsigned short)53614 && arr_7 [i_0] [i_1] [i_2] [i_3] != (unsigned short)15189;
     for (size_t i_0 = 0; i_0 < 16; ++i_0) 
         for (size_t i_1 = 0; i_1 < 16; ++i_1) 
-            hash(&seed, arr_8 [i_0] [i_1] );
+            value_mismatch |= arr_8 [i_0] [i_1] != 7U && arr_8 [i_0] [i_1] != 80070747U;
     for (size_t i_0 = 0; i_0 < 16; ++i_0) 
-        hash(&seed, arr_12 [i_0] );
+        value_mismatch |= arr_12 [i_0] != 0ULL && arr_12 [i_0] != 4566938037201705101ULL;
     for (size_t i_0 = 0; i_0 < 16; ++i_0) 
-        hash(&seed, arr_13 [i_0] );
+        value_mismatch |= arr_13 [i_0] != (unsigned short)36 && arr_13 [i_0] != (unsigned short)21619;
 }
 int main() {
   init();
@@ -139,5 +141,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_0, var_2, var_3, var_5, var_7, var_8, var_11, var_13, zero, &var_15, &var_16, &var_17, &var_18, &var_19);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }

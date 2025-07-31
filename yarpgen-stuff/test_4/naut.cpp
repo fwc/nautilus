@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 4
-Invocation: ./yarpgen --seed=4 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_4
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=4
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -41,6 +42,7 @@ void test(val<unsigned int> var_0, val<unsigned int> var_2, val<unsigned short> 
         } 
     } 
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -73,10 +75,10 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_13);
-    hash(&seed, var_14);
-    hash(&seed, var_15);
-    hash(&seed, var_16);
+    value_mismatch |= var_13 != (unsigned char)151;
+    value_mismatch |= var_14 != (short)1;
+    value_mismatch |= var_15 != 0U;
+    value_mismatch |= var_16 != 1596752578;
 }
 int main() {
   init();
@@ -87,5 +89,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_0, var_2, var_3, var_5, var_7, var_8, var_9, var_12, zero, &var_13, &var_14, &var_15, &var_16);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }

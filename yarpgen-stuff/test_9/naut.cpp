@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 9
-Invocation: ./yarpgen --seed=9 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_9
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=9
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -234,6 +235,7 @@ void test(val<unsigned int> var_0, val<signed char> var_1, val<unsigned long lon
 
     *var_67 = ((/* implicit */val<unsigned int>) var_10);
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -588,145 +590,145 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_13);
-    hash(&seed, var_14);
-    hash(&seed, var_15);
-    hash(&seed, var_16);
-    hash(&seed, var_17);
-    hash(&seed, var_18);
-    hash(&seed, var_19);
-    hash(&seed, var_20);
-    hash(&seed, var_21);
-    hash(&seed, var_22);
-    hash(&seed, var_23);
-    hash(&seed, var_24);
-    hash(&seed, var_25);
-    hash(&seed, var_26);
-    hash(&seed, var_27);
-    hash(&seed, var_28);
-    hash(&seed, var_29);
-    hash(&seed, var_30);
-    hash(&seed, var_31);
-    hash(&seed, var_32);
-    hash(&seed, var_33);
-    hash(&seed, var_34);
-    hash(&seed, var_35);
-    hash(&seed, var_36);
-    hash(&seed, var_37);
-    hash(&seed, var_38);
-    hash(&seed, var_39);
-    hash(&seed, var_40);
-    hash(&seed, var_41);
-    hash(&seed, var_42);
-    hash(&seed, var_43);
-    hash(&seed, var_44);
-    hash(&seed, var_45);
-    hash(&seed, var_46);
-    hash(&seed, var_47);
-    hash(&seed, var_48);
-    hash(&seed, var_49);
-    hash(&seed, var_50);
-    hash(&seed, var_51);
-    hash(&seed, var_52);
-    hash(&seed, var_53);
-    hash(&seed, var_54);
-    hash(&seed, var_55);
-    hash(&seed, var_56);
-    hash(&seed, var_57);
-    hash(&seed, var_58);
-    hash(&seed, var_59);
-    hash(&seed, var_60);
-    hash(&seed, var_61);
-    hash(&seed, var_62);
-    hash(&seed, var_63);
-    hash(&seed, var_64);
-    hash(&seed, var_65);
-    hash(&seed, var_66);
-    hash(&seed, var_67);
+    value_mismatch |= var_13 != (signed char)2;
+    value_mismatch |= var_14 != (unsigned char)200;
+    value_mismatch |= var_15 != (signed char)96;
+    value_mismatch |= var_16 != 3168060091870153768LL;
+    value_mismatch |= var_17 != -740549008016404489LL;
+    value_mismatch |= var_18 != (unsigned short)1;
+    value_mismatch |= var_19 != 12137657459854531889ULL;
+    value_mismatch |= var_20 != (short)25670;
+    value_mismatch |= var_21 != (bool)0;
+    value_mismatch |= var_22 != -6197272420689691986LL;
+    value_mismatch |= var_23 != 3613622974U;
+    value_mismatch |= var_24 != (signed char)-34;
+    value_mismatch |= var_25 != (unsigned short)2855;
+    value_mismatch |= var_26 != 9605383997225866439ULL;
+    value_mismatch |= var_27 != (bool)1;
+    value_mismatch |= var_28 != (unsigned short)1835;
+    value_mismatch |= var_29 != (unsigned char)201;
+    value_mismatch |= var_30 != 4751693315277629369ULL;
+    value_mismatch |= var_31 != (short)0;
+    value_mismatch |= var_32 != (bool)1;
+    value_mismatch |= var_33 != 318293259713705999LL;
+    value_mismatch |= var_34 != 18446744073709548643ULL;
+    value_mismatch |= var_35 != (unsigned short)0;
+    value_mismatch |= var_36 != -8715546230200157311LL;
+    value_mismatch |= var_37 != -1LL;
+    value_mismatch |= var_38 != (signed char)87;
+    value_mismatch |= var_39 != (unsigned short)3112;
+    value_mismatch |= var_40 != 0ULL;
+    value_mismatch |= var_41 != (bool)1;
+    value_mismatch |= var_42 != (unsigned char)0;
+    value_mismatch |= var_43 != (signed char)40;
+    value_mismatch |= var_44 != (signed char)7;
+    value_mismatch |= var_45 != (short)0;
+    value_mismatch |= var_46 != -41;
+    value_mismatch |= var_47 != (bool)1;
+    value_mismatch |= var_48 != (short)-29751;
+    value_mismatch |= var_49 != (signed char)7;
+    value_mismatch |= var_50 != -7305605021334242174LL;
+    value_mismatch |= var_51 != 26914LL;
+    value_mismatch |= var_52 != 1884433465LL;
+    value_mismatch |= var_53 != (unsigned short)6338;
+    value_mismatch |= var_54 != 38LL;
+    value_mismatch |= var_55 != (bool)1;
+    value_mismatch |= var_56 != (short)0;
+    value_mismatch |= var_57 != (unsigned char)7;
+    value_mismatch |= var_58 != (unsigned short)62630;
+    value_mismatch |= var_59 != -505006519;
+    value_mismatch |= var_60 != (signed char)-90;
+    value_mismatch |= var_61 != (signed char)7;
+    value_mismatch |= var_62 != 3168060091870153768ULL;
+    value_mismatch |= var_63 != (short)24791;
+    value_mismatch |= var_64 != (signed char)48;
+    value_mismatch |= var_65 != (unsigned short)43620;
+    value_mismatch |= var_66 != 34ULL;
+    value_mismatch |= var_67 != 22776U;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
-                    hash(&seed, arr_10 [i_0] [i_1] [i_2] [i_3] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
-            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
-                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
-                    for (size_t i_4 = 0; i_4 < 20; ++i_4) 
-                        for (size_t i_5 = 0; i_5 < 20; ++i_5) 
-                            hash(&seed, arr_11 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
-            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
-                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
-                    for (size_t i_4 = 0; i_4 < 20; ++i_4) 
-                        hash(&seed, arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
-            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
-                hash(&seed, arr_22 [i_0] [i_1] [i_2] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
-            hash(&seed, arr_29 [i_0] [i_1] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
-            hash(&seed, arr_40 [i_0] [i_1] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        hash(&seed, arr_46 [i_0] );
-    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
-        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
-            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
-                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
-                    for (size_t i_4 = 0; i_4 < 20; ++i_4) 
-                        hash(&seed, arr_58 [i_0] [i_1] [i_2] [i_3] [i_4] );
+                    value_mismatch |= arr_10 [i_0] [i_1] [i_2] [i_3] != 1912299735U && arr_10 [i_0] [i_1] [i_2] [i_3] != 592431790U;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
                     for (size_t i_4 = 0; i_4 < 20; ++i_4) 
                         for (size_t i_5 = 0; i_5 < 20; ++i_5) 
-                            hash(&seed, arr_62 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] );
+                            value_mismatch |= arr_11 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (bool)1 && arr_11 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (bool)1;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
                     for (size_t i_4 = 0; i_4 < 20; ++i_4) 
-                        hash(&seed, arr_63 [i_0] [i_1] [i_2] [i_3] [i_4] );
+                        value_mismatch |= arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] != (signed char)-41 && arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] != (signed char)-49 && arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] != (signed char)-41 && arr_17 [i_0] [i_1] [i_2] [i_3] [i_4] != (signed char)-105;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
-                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
-                    hash(&seed, arr_67 [i_0] [i_1] [i_2] [i_3] );
+                value_mismatch |= arr_22 [i_0] [i_1] [i_2] != (bool)0 && arr_22 [i_0] [i_1] [i_2] != (bool)0;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
+            value_mismatch |= arr_29 [i_0] [i_1] != (signed char)19 && arr_29 [i_0] [i_1] != (signed char)19 && arr_29 [i_0] [i_1] != (signed char)19 && arr_29 [i_0] [i_1] != (signed char)19;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
+            value_mismatch |= arr_40 [i_0] [i_1] != 1362530664ULL && arr_40 [i_0] [i_1] != 5420603708737429254ULL && arr_40 [i_0] [i_1] != 759713717ULL && arr_40 [i_0] [i_1] != 15277094198915085823ULL;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        value_mismatch |= arr_46 [i_0] != 224ULL && arr_46 [i_0] != 8741490924410752075ULL && arr_46 [i_0] != 224ULL && arr_46 [i_0] != 5263538644162503865ULL;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
                     for (size_t i_4 = 0; i_4 < 20; ++i_4) 
-                        hash(&seed, arr_68 [i_0] [i_1] [i_2] [i_3] [i_4] );
+                        value_mismatch |= arr_58 [i_0] [i_1] [i_2] [i_3] [i_4] != 0ULL && arr_58 [i_0] [i_1] [i_2] [i_3] [i_4] != 13060638402147012640ULL && arr_58 [i_0] [i_1] [i_2] [i_3] [i_4] != 0ULL && arr_58 [i_0] [i_1] [i_2] [i_3] [i_4] != 10893168422537449523ULL;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
                     for (size_t i_4 = 0; i_4 < 20; ++i_4) 
                         for (size_t i_5 = 0; i_5 < 20; ++i_5) 
-                            hash(&seed, arr_69 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] );
+                            value_mismatch |= arr_62 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (short)75 && arr_62 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (short)-16631;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
+            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
+                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
+                    for (size_t i_4 = 0; i_4 < 20; ++i_4) 
+                        value_mismatch |= arr_63 [i_0] [i_1] [i_2] [i_3] [i_4] != (unsigned char)48 && arr_63 [i_0] [i_1] [i_2] [i_3] [i_4] != (unsigned char)204;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
+            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
+                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
+                    value_mismatch |= arr_67 [i_0] [i_1] [i_2] [i_3] != (unsigned short)0 && arr_67 [i_0] [i_1] [i_2] [i_3] != (unsigned short)55061 && arr_67 [i_0] [i_1] [i_2] [i_3] != (unsigned short)0 && arr_67 [i_0] [i_1] [i_2] [i_3] != (unsigned short)35717;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
+            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
+                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
+                    for (size_t i_4 = 0; i_4 < 20; ++i_4) 
+                        value_mismatch |= arr_68 [i_0] [i_1] [i_2] [i_3] [i_4] != (unsigned short)255 && arr_68 [i_0] [i_1] [i_2] [i_3] [i_4] != (unsigned short)55758 && arr_68 [i_0] [i_1] [i_2] [i_3] [i_4] != (unsigned short)255 && arr_68 [i_0] [i_1] [i_2] [i_3] [i_4] != (unsigned short)48711;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
                     for (size_t i_4 = 0; i_4 < 20; ++i_4) 
                         for (size_t i_5 = 0; i_5 < 20; ++i_5) 
-                            hash(&seed, arr_72 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] );
+                            value_mismatch |= arr_69 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (unsigned char)1 && arr_69 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (unsigned char)128 && arr_69 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (unsigned char)0 && arr_69 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (unsigned char)73;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
                 for (size_t i_3 = 0; i_3 < 20; ++i_3) 
                     for (size_t i_4 = 0; i_4 < 20; ++i_4) 
-                        hash(&seed, arr_73 [i_0] [i_1] [i_2] [i_3] [i_4] );
+                        for (size_t i_5 = 0; i_5 < 20; ++i_5) 
+                            value_mismatch |= arr_72 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (signed char)-125 && arr_72 [i_0] [i_1] [i_2] [i_3] [i_4] [i_5] != (signed char)123;
     for (size_t i_0 = 0; i_0 < 20; ++i_0) 
         for (size_t i_1 = 0; i_1 < 20; ++i_1) 
             for (size_t i_2 = 0; i_2 < 20; ++i_2) 
-                hash(&seed, arr_74 [i_0] [i_1] [i_2] );
+                for (size_t i_3 = 0; i_3 < 20; ++i_3) 
+                    for (size_t i_4 = 0; i_4 < 20; ++i_4) 
+                        value_mismatch |= arr_73 [i_0] [i_1] [i_2] [i_3] [i_4] != (bool)0 && arr_73 [i_0] [i_1] [i_2] [i_3] [i_4] != (bool)1;
+    for (size_t i_0 = 0; i_0 < 20; ++i_0) 
+        for (size_t i_1 = 0; i_1 < 20; ++i_1) 
+            for (size_t i_2 = 0; i_2 < 20; ++i_2) 
+                value_mismatch |= arr_74 [i_0] [i_1] [i_2] != 0ULL && arr_74 [i_0] [i_1] [i_2] != 3579911039296859677ULL;
 }
 int main() {
   init();
@@ -737,5 +739,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_0, var_1, var_2, var_3, var_4, var_5, var_6, var_7, var_8, var_9, var_10, var_11, var_12, zero, &var_13, &var_14, &var_15, &var_16, &var_17, &var_18, &var_19, &var_20, &var_21, &var_22, &var_23, &var_24, &var_25, &var_26, &var_27, &var_28, &var_29, &var_30, &var_31, &var_32, &var_33, &var_34, &var_35, &var_36, &var_37, &var_38, &var_39, &var_40, &var_41, &var_42, &var_43, &var_44, &var_45, &var_46, &var_47, &var_48, &var_49, &var_50, &var_51, &var_52, &var_53, &var_54, &var_55, &var_56, &var_57, &var_58, &var_59, &var_60, &var_61, &var_62, &var_63, &var_64, &var_65, &var_66, &var_67);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }
