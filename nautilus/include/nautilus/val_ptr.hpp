@@ -72,31 +72,41 @@ public:
 		*this = value;
 	}
 
-	template <class T>
-	    requires std::is_convertible_v<T, baseType>
-	void operator+=(T other) noexcept {
-		val<baseType> value {other};
-		*this += value;
-	}
-	template <class T>
-	    requires std::is_convertible_v<T, baseType>
-	void operator+=(val<T> other) noexcept {
-		val<baseType> value {other};
-		*this = *this + value;
+#define BINARY_AND_ASSIGN_OPERATOR(OP)                                                                                 \
+	template <class T>                                                                                                 \
+	    requires std::is_convertible_v<T, baseType>                                                                    \
+	void operator OP##=(T other) noexcept {                                                                            \
+		val<baseType> value {other};                                                                                   \
+		*this OP## = value;                                                                                            \
+	}                                                                                                                  \
+	template <class T>                                                                                                 \
+	    requires std::is_convertible_v<T, baseType>                                                                    \
+	void operator OP##=(val<T> other) noexcept {                                                                       \
+		val<baseType> value {other};                                                                                   \
+		*this = *this OP value;                                                                                        \
+	}                                                                                                                  \
+                                                                                                                       \
+	template <class T>                                                                                                 \
+	    requires std::is_convertible_v<T, baseType>                                                                    \
+	auto operator OP(T other) noexcept {                                                                               \
+		val<baseType> value {other};                                                                                   \
+		return *this OP value;                                                                                         \
+	}                                                                                                                  \
+	template <class T>                                                                                                 \
+	    requires std::is_convertible_v<T, baseType>                                                                    \
+	auto operator OP(val<T> other) noexcept {                                                                          \
+		val<baseType> ourVal {*this};                                                                                  \
+		return ourVal OP other;                                                                                        \
 	}
 
-	template <class T>
-	    requires std::is_convertible_v<T, baseType>
-	auto operator+(T other) noexcept {
-		val<baseType> value {other};
-		return *this + value;
-	}
-	template <class T>
-	    requires std::is_convertible_v<T, baseType>
-	auto operator+(val<T> other) noexcept {
-		val<baseType> ourVal {*this};
-		return ourVal + other;
-	}
+	BINARY_AND_ASSIGN_OPERATOR(+)
+	BINARY_AND_ASSIGN_OPERATOR(-)
+	BINARY_AND_ASSIGN_OPERATOR(*)
+	BINARY_AND_ASSIGN_OPERATOR(/)
+	BINARY_AND_ASSIGN_OPERATOR(%)
+	BINARY_AND_ASSIGN_OPERATOR(|)
+	BINARY_AND_ASSIGN_OPERATOR(&)
+	BINARY_AND_ASSIGN_OPERATOR(^)
 
 private:
 	val<ptrType> ptr;
