@@ -34,8 +34,16 @@ set(CMAKE_CXX_WARNINGS "-Wall -Wextra -pedantic-errors -Werror=extra-semi -Werro
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Wpedantic-macros")
-else ()
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 17)
+        message(FATAL_ERROR "Requires at least clang version 17")
+    endif ()
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Woverflow")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13)
+        message(FATAL_ERROR "Requires at least gcc version 13")
+    endif ()
+else ()
+    message(WARNING "using neither clang nor gcc for compilation.")
 endif ()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_WARNINGS} -fpermissive -fno-omit-frame-pointer")
 
