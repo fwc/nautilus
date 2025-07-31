@@ -72,6 +72,32 @@ public:
 		*this = value;
 	}
 
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	void operator+=(T other) noexcept {
+		val<baseType> value {other};
+		*this += value;
+	}
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	void operator+=(val<T> other) noexcept {
+		val<baseType> value {other};
+		*this = *this + value;
+	}
+
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	auto operator+(T other) noexcept {
+		val<baseType> value {other};
+		return *this + value;
+	}
+	template <class T>
+	    requires std::is_convertible_v<T, baseType>
+	auto operator+(val<T> other) noexcept {
+		val<baseType> ourVal {*this};
+		return ourVal + other;
+	}
+
 private:
 	val<ptrType> ptr;
 	friend val<ptrType>;
