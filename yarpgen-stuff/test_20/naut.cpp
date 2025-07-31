@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 20
-Invocation: ./yarpgen --seed=20 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_20
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=20
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -42,6 +43,7 @@ void test(val<bool> var_0, val<short> var_1, val<bool> var_3, val<unsigned short
         } 
     } 
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -93,20 +95,20 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_17);
-    hash(&seed, var_18);
-    hash(&seed, var_19);
-    hash(&seed, var_20);
-    hash(&seed, var_21);
-    hash(&seed, var_22);
-    hash(&seed, var_23);
-    hash(&seed, var_24);
+    value_mismatch |= var_17 != 2040641254U;
+    value_mismatch |= var_18 != (unsigned short)42257;
+    value_mismatch |= var_19 != 0ULL;
+    value_mismatch |= var_20 != 18446744073709518474ULL;
+    value_mismatch |= var_21 != (signed char)0;
+    value_mismatch |= var_22 != 0LL;
+    value_mismatch |= var_23 != -1926100603109462555LL;
+    value_mismatch |= var_24 != (unsigned char)117;
     for (size_t i_0 = 0; i_0 < 17; ++i_0) 
         for (size_t i_1 = 0; i_1 < 17; ++i_1) 
-            hash(&seed, arr_6 [i_0] [i_1] );
+            value_mismatch |= arr_6 [i_0] [i_1] != 16ULL && arr_6 [i_0] [i_1] != 12717349664980102893ULL && arr_6 [i_0] [i_1] != 16ULL && arr_6 [i_0] [i_1] != 11475580209329907036ULL;
     for (size_t i_0 = 0; i_0 < 17; ++i_0) 
         for (size_t i_1 = 0; i_1 < 17; ++i_1) 
-            hash(&seed, arr_7 [i_0] [i_1] );
+            value_mismatch |= arr_7 [i_0] [i_1] != (unsigned char)120 && arr_7 [i_0] [i_1] != (unsigned char)54 && arr_7 [i_0] [i_1] != (unsigned char)120 && arr_7 [i_0] [i_1] != (unsigned char)237;
 }
 int main() {
   init();
@@ -117,5 +119,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_0, var_1, var_3, var_4, var_5, var_6, var_7, var_8, var_9, var_11, var_12, var_13, var_14, var_15, zero, &var_17, &var_18, &var_19, &var_20, &var_21, &var_22, &var_23, &var_24);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }
