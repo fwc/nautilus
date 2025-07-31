@@ -110,6 +110,13 @@ public:
 		return temp;
 	}
 
+	const val<ValueType>& operator-() {
+		// negate (?) TODO i fear cppref has slightly different semantic
+		*this = (ValueType) 0 - *this;
+		// assign
+		return *this;
+	}
+
 	const val<ValueType>& operator--() {
 		// decrement
 		*this = *this - (ValueType) 1;
