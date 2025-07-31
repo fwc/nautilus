@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 3
-Invocation: ./yarpgen --seed=3 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_3
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=3
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -47,6 +48,7 @@ void test(val<int> var_7, val<unsigned int> var_11, val<int> var_12, val<bool> v
     }
     *var_22 = ((/* implicit */val<signed char>) (-(((/* implicit */val<int>) max(((val<short>)32767), ((val<short>)14336))))));
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -84,20 +86,20 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_18);
-    hash(&seed, var_19);
-    hash(&seed, var_20);
-    hash(&seed, var_21);
-    hash(&seed, var_22);
+    value_mismatch |= var_18 != (bool)1;
+    value_mismatch |= var_19 != 72;
+    value_mismatch |= var_20 != (short)0;
+    value_mismatch |= var_21 != -143;
+    value_mismatch |= var_22 != (signed char)1;
     for (size_t i_0 = 0; i_0 < 15; ++i_0) 
-        hash(&seed, arr_2 [i_0] );
+        value_mismatch |= arr_2 [i_0] != (unsigned char)142 && arr_2 [i_0] != (unsigned char)111;
     for (size_t i_0 = 0; i_0 < 15; ++i_0) 
         for (size_t i_1 = 0; i_1 < 15; ++i_1) 
-            hash(&seed, arr_3 [i_0] [i_1] );
+            value_mismatch |= arr_3 [i_0] [i_1] != (unsigned char)252 && arr_3 [i_0] [i_1] != (unsigned char)114;
     for (size_t i_0 = 0; i_0 < 15; ++i_0) 
-        hash(&seed, arr_4 [i_0] );
+        value_mismatch |= arr_4 [i_0] != (signed char)-22 && arr_4 [i_0] != (signed char)-49;
     for (size_t i_0 = 0; i_0 < 15; ++i_0) 
-        hash(&seed, arr_9 [i_0] );
+        value_mismatch |= arr_9 [i_0] != -2009434158 && arr_9 [i_0] != -2065124859 && arr_9 [i_0] != -2009434158 && arr_9 [i_0] != -1357383819;
 }
 int main() {
   init();
@@ -108,5 +110,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_7, var_11, var_12, var_14, var_17, zero, &var_18, &var_19, &var_20, &var_21, &var_22);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }

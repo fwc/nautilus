@@ -1,11 +1,12 @@
 /*
-yarpgen version 2.0 (build 27a5fb5 on 1980:01:01)
+yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
 Seed: 2
-Invocation: ./yarpgen --seed=2 --nautilus=true -o /home/marg/nes/nautilus/yarpgen-stuff/test_2
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=2
 */
 
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
+#include <cassert>
 
 using namespace nautilus;
 
@@ -35,6 +36,7 @@ void test(val<int> var_5, val<short> var_12, val<short> var_14, val<short> var_1
         *var_20 = ((/* implicit */val<int>) min((var_20), (max(((+(((/* implicit */val<int>) (val<short>)-30524)))), (((2147483639) / (((/* implicit */val<int>) (val<short>)-15561))))))));
     }
 }
+static bool value_mismatch = false;
 unsigned long long int seed = 0;
 void hash(unsigned long long int *seed, unsigned long long int const v) {
     *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
@@ -60,15 +62,15 @@ void init() {
 }
 
 void checksum() {
-    hash(&seed, var_17);
-    hash(&seed, var_18);
-    hash(&seed, var_19);
-    hash(&seed, var_20);
+    value_mismatch |= var_17 != (short)19476;
+    value_mismatch |= var_18 != (short)0;
+    value_mismatch |= var_19 != (short)30571;
+    value_mismatch |= var_20 != -30524;
     for (size_t i_0 = 0; i_0 < 18; ++i_0) 
         for (size_t i_1 = 0; i_1 < 18; ++i_1) 
-            hash(&seed, arr_4 [i_0] [i_1] );
+            value_mismatch |= arr_4 [i_0] [i_1] != (short)8192 && arr_4 [i_0] [i_1] != (short)-27348;
     for (size_t i_0 = 0; i_0 < 18; ++i_0) 
-        hash(&seed, arr_7 [i_0] );
+        value_mismatch |= arr_7 [i_0] != (short)23633 && arr_7 [i_0] != (short)-16760 && arr_7 [i_0] != (short)23633 && arr_7 [i_0] != (short)-23848;
 }
 int main() {
   init();
@@ -79,5 +81,5 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_5, var_12, var_14, var_15, zero, &var_17, &var_18, &var_19, &var_20);
   checksum();
-  std::cout << "Result: " << seed << std::endl;
+  assert(!value_mismatch);
 }
