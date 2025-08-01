@@ -1,5 +1,5 @@
-name: Build Nautilus
-run-name: Check format
+name: Format Nautilus
+run-name: ${{ github.actor }} checks format
 on:
   push:
     branches:
