@@ -112,7 +112,6 @@ public:
 
 	val<ValueType> operator+() {
 		// TODO
-		//*this = (ValueType) 0 - *this;
 		return *this;
 	}
 
