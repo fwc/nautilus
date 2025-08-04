@@ -116,7 +116,7 @@ public:
 		return *this;
 	}
 
-	const val<ValueType>& operator-() {
+	val<ValueType> operator-() {
 		// negate (?) TODO i fear cppref has slightly different semantic
 		*this = (ValueType) 0 - *this;
 		// assign
