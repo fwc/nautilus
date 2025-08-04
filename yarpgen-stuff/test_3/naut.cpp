@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 3
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=3
 */
@@ -25,10 +25,10 @@ void test(val<int> var_7, val<unsigned int> var_11, val<int> var_12, val<bool> v
     #pragma clang loop vectorize(enable)
     for (val<bool> i_0 = (val<bool>)0/*0*/; i_0 < (val<bool>)1/*1*/; i_0 += (val<bool>)1/*1*/) /* same iter space */
     {
-        *arr_2 [(val<bool>)0] = ((/* implicit */val<unsigned char>) ((val<int>) (val<unsigned char>)142));
-        *arr_3 [i_0] [i_0] = ((/* implicit */val<unsigned char>) var_17);
+        arr_2 [(val<bool>)0] = ((/* implicit */val<unsigned char>) ((val<int>) (val<unsigned char>)142));
+        arr_3 [i_0] [i_0] = ((/* implicit */val<unsigned char>) var_17);
         *var_18 += ((/* implicit */val<bool>) (val<unsigned char>)84);
-        *arr_4 [i_0] = ((/* implicit */val<signed char>) ((((/* implicit */val<bool>) arr_1 [i_0] [i_0])) ? (((/* implicit */val<int>) (val<signed char>)-22)) : (((((/* implicit */val<bool>) var_11)) ? (((/* implicit */val<int>) var_14)) : (((/* implicit */val<int>) (val<unsigned char>)113))))));
+        arr_4 [i_0] = ((/* implicit */val<signed char>) ((((/* implicit */val<bool>) arr_1 [i_0] [i_0])) ? (((/* implicit */val<int>) (val<signed char>)-22)) : (((((/* implicit */val<bool>) var_11)) ? (((/* implicit */val<int>) var_14)) : (((/* implicit */val<int>) (val<unsigned char>)113))))));
     }
     #pragma omp simd
     #pragma clang loop unroll(enable)
@@ -40,10 +40,10 @@ void test(val<int> var_7, val<unsigned int> var_11, val<int> var_12, val<bool> v
         #pragma clang loop unroll(enable)
         for (val<int> i_2 = 0/*0*/; i_2 < 15/*15*/; i_2 += ((((/* implicit */val<int>) (!(((((/* implicit */val<unsigned long long int>) (+(var_7)))) > (max((((/* implicit */val<unsigned long long int>) (val<unsigned char>)0)), (16620447504488265468ULL)))))))) + (4))/*4*/) 
         {
-            *var_19 = ((/* implicit */val<int>) min((var_19), (((/* implicit */val<int>) (val<unsigned char>)72))));
+            *var_19 = ((/* implicit */val<int>) min((*var_19), (((/* implicit */val<int>) (val<unsigned char>)72))));
             *var_20 *= ((/* implicit */val<short>) (((!(((/* implicit */val<bool>) (+(var_12)))))) ? ((-((-(((/* implicit */val<int>) (val<unsigned char>)72)))))) : (((/* implicit */val<int>) ((((/* implicit */val<int>) (val<signed char>)-22)) == (((/* implicit */val<int>) (val<bool>)1)))))));
         }
-        *arr_9 [i_1] = var_7;
+        arr_9 [i_1] = var_7;
         *var_21 = (~(((/* implicit */val<int>) (val<unsigned char>)142)));
     }
     *var_22 = ((/* implicit */val<signed char>) (-(((/* implicit */val<int>) max(((val<short>)32767), ((val<short>)14336))))));

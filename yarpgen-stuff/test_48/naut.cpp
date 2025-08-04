@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 48
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=48
 */

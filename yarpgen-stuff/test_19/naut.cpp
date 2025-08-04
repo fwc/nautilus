@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 19
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=19
 */
@@ -162,7 +162,7 @@ void test(val<unsigned long long int> var_0, val<int> var_1, val<int> var_2, val
 
                 if (((/* implicit */val<bool>) ((((/* implicit */val<int>) var_14)) ^ (((var_1) ^ (((((/* implicit */val<int>) (val<unsigned short>)65519)) ^ (((/* implicit */val<int>) var_11)))))))))
                 {
-                    *var_67 = ((/* implicit */val<unsigned int>) min((var_67), (((/* implicit */val<unsigned int>) ((min((((/* implicit */val<unsigned long long int>) (-(((/* implicit */val<int>) var_10))))), (((((/* implicit */val<bool>) (val<short>)32767)) ? (4198880745763968715ULL) : (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (val<signed char>)-58))))))) ^ (max((((/* implicit */val<unsigned long long int>) ((((/* implicit */val<bool>) (val<unsigned short>)65515)) ? (((/* implicit */val<int>) var_14)) : (((/* implicit */val<int>) (val<signed char>)110))))), (((((/* implicit */val<bool>) var_12)) ? (var_6) : (var_0))))))))));
+                    *var_67 = ((/* implicit */val<unsigned int>) min((*var_67), (((/* implicit */val<unsigned int>) ((min((((/* implicit */val<unsigned long long int>) (-(((/* implicit */val<int>) var_10))))), (((((/* implicit */val<bool>) (val<short>)32767)) ? (4198880745763968715ULL) : (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (val<signed char>)-58))))))) ^ (max((((/* implicit */val<unsigned long long int>) ((((/* implicit */val<bool>) (val<unsigned short>)65515)) ? (((/* implicit */val<int>) var_14)) : (((/* implicit */val<int>) (val<signed char>)110))))), (((((/* implicit */val<bool>) var_12)) ? (var_6) : (var_0))))))))));
                     if (((/* implicit */val<bool>) var_7))
                     {
                         *var_68 = ((/* implicit */val<short>) (-(400877234)));
@@ -181,7 +181,7 @@ void test(val<unsigned long long int> var_0, val<int> var_1, val<int> var_2, val
             if (((/* implicit */val<bool>) (-(((/* implicit */val<int>) (val<unsigned short>)38658)))))
             {
                 *var_71 = ((/* implicit */val<unsigned int>) (-(min((((/* implicit */val<unsigned long long int>) ((564774284U) ^ (((/* implicit */val<unsigned int>) ((/* implicit */val<int>) (val<signed char>)25)))))), (((((/* implicit */val<bool>) var_8)) ? (var_0) : (((/* implicit */val<unsigned long long int>) var_5))))))));
-                *var_72 = ((/* implicit */val<int>) min((var_72), (max(((+(((/* implicit */val<int>) (!(((/* implicit */val<bool>) (val<unsigned short>)49951))))))), (((/* implicit */val<int>) ((val<unsigned char>) (!(((/* implicit */val<bool>) var_11))))))))));
+                *var_72 = ((/* implicit */val<int>) min((*var_72), (max(((+(((/* implicit */val<int>) (!(((/* implicit */val<bool>) (val<unsigned short>)49951))))))), (((/* implicit */val<int>) ((val<unsigned char>) (!(((/* implicit */val<bool>) var_11))))))))));
                 if (((/* implicit */val<bool>) ((val<signed char>) ((((/* implicit */val<bool>) var_6)) ? (max((var_2), (((/* implicit */val<int>) var_4)))) : (((((/* implicit */val<bool>) (val<unsigned char>)186)) ? (-718194511) : (((/* implicit */val<int>) var_4))))))))
                 {
                     if (((/* implicit */val<bool>) (((((+(((/* implicit */val<int>) var_7)))) - ((+(((/* implicit */val<int>) (val<signed char>)-109)))))) - (((min((var_1), (var_13))) / (var_2))))))
@@ -228,7 +228,7 @@ void test(val<unsigned long long int> var_0, val<int> var_1, val<int> var_2, val
                         *var_90 = ((/* implicit */val<unsigned char>) ((val<long long int>) ((var_0) ^ (((/* implicit */val<unsigned long long int>) ((val<long long int>) var_2))))));
                         *var_91 = ((/* implicit */val<int>) ((((/* implicit */val<bool>) min(((~(var_3))), (((/* implicit */val<unsigned long long int>) ((((/* implicit */val<bool>) var_5)) ? (var_9) : (var_8))))))) ? (((/* implicit */val<long long int>) min((((((/* implicit */val<bool>) var_5)) ? (((/* implicit */val<int>) var_11)) : (((/* implicit */val<int>) (val<unsigned char>)255)))), (((/* implicit */val<int>) ((val<unsigned short>) var_4)))))) : (((((((/* implicit */val<long long int>) ((/* implicit */val<int>) var_11))) ^ (var_9))) ^ (((/* implicit */val<long long int>) var_2))))));
                         *var_92 = ((/* implicit */val<unsigned short>) ((((((/* implicit */val<bool>) var_6)) ? (((((/* implicit */val<int>) var_10)) ^ (((/* implicit */val<int>) var_12)))) : (max((var_13), (((/* implicit */val<int>) var_7)))))) ^ (268435339)));
-                        *var_93 = ((/* implicit */val<bool>) min((var_93), (((/* implicit */val<bool>) ((val<long long int>) 2147483642)))));
+                        *var_93 = ((/* implicit */val<bool>) min((*var_93), (((/* implicit */val<bool>) ((val<long long int>) 2147483642)))));
                     }
                     else
                     {
@@ -247,7 +247,7 @@ void test(val<unsigned long long int> var_0, val<int> var_1, val<int> var_2, val
                         *var_98 = ((/* implicit */val<unsigned short>) ((((/* implicit */val<bool>) var_3)) ? (((((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) var_4))) ^ (((((/* implicit */val<bool>) var_12)) ? (var_3) : (((/* implicit */val<unsigned long long int>) var_1)))))) : (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (!(((/* implicit */val<bool>) (~(-2095383546))))))))));
                         *var_99 = ((/* implicit */val<signed char>) ((val<long long int>) ((((/* implicit */val<bool>) var_6)) ? (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) var_10))) : (max((var_0), (((/* implicit */val<unsigned long long int>) var_10)))))));
                         *var_100 = ((/* implicit */val<int>) ((((/* implicit */val<bool>) min((((/* implicit */val<unsigned int>) min((var_14), (var_12)))), ((~(var_5)))))) ? (((((/* implicit */val<long long int>) ((((/* implicit */val<bool>) var_5)) ? (((/* implicit */val<int>) var_10)) : (((/* implicit */val<int>) var_10))))) ^ (((((/* implicit */val<bool>) (val<signed char>)111)) ? (-1743382288711293375LL) : (((/* implicit */val<long long int>) 2147483643)))))) : (((/* implicit */val<long long int>) (~(((var_4) ? (var_2) : (((/* implicit */val<int>) (val<signed char>)25)))))))));
-                        *var_101 = ((/* implicit */val<unsigned int>) min((var_101), (((/* implicit */val<unsigned int>) ((((/* implicit */val<long long int>) ((/* implicit */val<int>) (val<signed char>)125))) ^ (-4023479519021151090LL))))));
+                        *var_101 = ((/* implicit */val<unsigned int>) min((*var_101), (((/* implicit */val<unsigned int>) ((((/* implicit */val<long long int>) ((/* implicit */val<int>) (val<signed char>)125))) ^ (-4023479519021151090LL))))));
                     }
 
                     *var_102 = ((/* implicit */val<signed char>) (~(((/* implicit */val<int>) (val<unsigned short>)48657))));
@@ -270,7 +270,7 @@ void test(val<unsigned long long int> var_0, val<int> var_1, val<int> var_2, val
     {
         if (((/* implicit */val<bool>) min((((/* implicit */val<int>) var_10)), (min((((((/* implicit */val<bool>) var_6)) ? (((/* implicit */val<int>) var_12)) : (((/* implicit */val<int>) var_12)))), (((/* implicit */val<int>) var_10)))))))
         {
-            *var_107 = ((/* implicit */val<short>) min((var_107), (((/* implicit */val<short>) (~((((-(var_5))) ^ (((/* implicit */val<unsigned int>) ((2095383539) ^ (((/* implicit */val<int>) var_7))))))))))));
+            *var_107 = ((/* implicit */val<short>) min((*var_107), (((/* implicit */val<short>) (~((((-(var_5))) ^ (((/* implicit */val<unsigned int>) ((2095383539) ^ (((/* implicit */val<int>) var_7))))))))))));
             if (((/* implicit */val<bool>) ((((((((/* implicit */val<bool>) -4023479519021151090LL)) ? (((/* implicit */val<unsigned int>) -1986314502)) : (2227503846U))) ^ (((/* implicit */val<unsigned int>) ((/* implicit */val<int>) (!(((/* implicit */val<bool>) 108086391056891904LL)))))))) ^ (((/* implicit */val<unsigned int>) (-(2147483647)))))))
             {
                 if (((/* implicit */val<bool>) ((max((((((/* implicit */val<unsigned int>) ((/* implicit */val<int>) (val<unsigned short>)65109))) ^ (1541893637U))), (((/* implicit */val<unsigned int>) (!(((/* implicit */val<bool>) var_0))))))) ^ (((/* implicit */val<unsigned int>) var_1)))))

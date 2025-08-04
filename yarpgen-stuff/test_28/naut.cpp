@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 28
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=28
 */
@@ -44,14 +44,14 @@ void test(val<long long int> var_0, val<long long int> var_1, val<int> var_2, va
                         {
                             {
                                 *var_18 ^= ((/* implicit */val<long long int>) (+((+(((/* implicit */val<int>) (val<bool>)0))))));
-                                *var_19 = ((/* implicit */val<long long int>) min((var_19), ((((~(-9223372036854775780LL))) + (arr_10 [i_2 - 2] [i_1] [i_2 - 2] [i_4 - 2])))));
+                                *var_19 = ((/* implicit */val<long long int>) min((*var_19), ((((~(-9223372036854775780LL))) + (arr_10 [i_2 - 2] [i_1] [i_2 - 2] [i_4 - 2])))));
                             }
                         } 
                     } 
                 } 
                 *var_20 = ((/* implicit */val<bool>) arr_11 [i_0] [i_0] [i_1]);
-                *arr_13 [i_0] [i_1] [i_1] = ((/* implicit */val<bool>) ((((/* implicit */val<bool>) ((((/* implicit */val<bool>) (~(((/* implicit */val<int>) arr_7 [i_0] [i_0] [0LL] [(val<bool>)1]))))) ? (arr_11 [i_0] [i_1] [i_1]) : (((((/* implicit */val<bool>) -2141710347)) ? (arr_3 [i_0]) : (((/* implicit */val<long long int>) var_13))))))) ? ((((val<bool>)1) ? (((/* implicit */val<long long int>) ((/* implicit */val<int>) (val<bool>)1))) : (576425567931334656LL))) : (((/* implicit */val<long long int>) arr_12 [i_0] [i_0] [i_0] [i_1]))));
-                *arr_14 [i_1] [i_0] = ((/* implicit */val<int>) (!(((/* implicit */val<bool>) min((((((/* implicit */val<bool>) var_0)) ? (((/* implicit */val<int>) var_10)) : (arr_12 [i_0] [i_0] [i_0] [i_1]))), (((/* implicit */val<int>) arr_2 [i_0])))))));
+                arr_13 [i_0] [i_1] [i_1] = ((/* implicit */val<bool>) ((((/* implicit */val<bool>) ((((/* implicit */val<bool>) (~(((/* implicit */val<int>) arr_7 [i_0] [i_0] [0LL] [(val<bool>)1]))))) ? (arr_11 [i_0] [i_1] [i_1]) : (((((/* implicit */val<bool>) -2141710347)) ? (arr_3 [i_0]) : (((/* implicit */val<long long int>) var_13))))))) ? ((((val<bool>)1) ? (((/* implicit */val<long long int>) ((/* implicit */val<int>) (val<bool>)1))) : (576425567931334656LL))) : (((/* implicit */val<long long int>) arr_12 [i_0] [i_0] [i_0] [i_1]))));
+                arr_14 [i_1] [i_0] = ((/* implicit */val<int>) (!(((/* implicit */val<bool>) min((((((/* implicit */val<bool>) var_0)) ? (((/* implicit */val<int>) var_10)) : (arr_12 [i_0] [i_0] [i_0] [i_1]))), (((/* implicit */val<int>) arr_2 [i_0])))))));
                 *var_21 = ((((/* implicit */val<bool>) max(((+(450448771))), (arr_12 [i_1] [i_0] [i_0] [i_0])))) ? (((/* implicit */val<long long int>) ((-1) * (-1404588861)))) : (arr_10 [(val<bool>)0] [i_0] [i_1] [(val<bool>)0]));
             }
         } 

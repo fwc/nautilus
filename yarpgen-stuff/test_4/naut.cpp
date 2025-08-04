@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 4
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=4
 */
@@ -19,7 +19,7 @@ using namespace nautilus;
        __typeof__ (b) _b = (b); \
        _a < _b ? _a : _b; })
 void test(val<unsigned int> var_0, val<unsigned int> var_2, val<unsigned short> var_3, val<unsigned short> var_5, val<unsigned char> var_7, val<int> var_8, val<unsigned short> var_9, val<unsigned long long int> var_12, val<int> zero, val<unsigned char*> var_13, val<short*> var_14, val<unsigned int*> var_15, val<int*> var_16) {
-    *var_13 = ((/* implicit */val<unsigned char>) max((var_13), (((/* implicit */val<unsigned char>) (((val<bool>)1) ? (((val<unsigned long long int>) ((val<unsigned long long int>) var_12))) : (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) var_7))))))));
+    *var_13 = ((/* implicit */val<unsigned char>) max((*var_13), (((/* implicit */val<unsigned char>) (((val<bool>)1) ? (((val<unsigned long long int>) ((val<unsigned long long int>) var_12))) : (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) var_7))))))));
     /* LoopNest 3 */
     #pragma clang loop interleave(enable)
     #pragma clang loop unroll(enable)

@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 18
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=18
 */
@@ -23,7 +23,7 @@ void test(val<bool> var_0, val<unsigned long long int> var_2, val<bool> var_5, v
     *var_11 -= ((/* implicit */val<unsigned char>) var_5);
     *var_12 = ((/* implicit */val<unsigned long long int>) min((var_9), (((/* implicit */val<long long int>) ((1181351430) | (1181351420))))));
     *var_13 = ((/* implicit */val<unsigned short>) ((((/* implicit */val<unsigned int>) 1181351416)) + (3891083961U)));
-    *var_14 = ((/* implicit */val<signed char>) max((var_14), (((/* implicit */val<signed char>) ((((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) ((((var_7) ? (((/* implicit */val<int>) var_0)) : (((/* implicit */val<int>) var_0)))) == (((/* implicit */val<int>) var_5)))))) - (var_2))))));
+    *var_14 = ((/* implicit */val<signed char>) max((*var_14), (((/* implicit */val<signed char>) ((((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) ((((var_7) ? (((/* implicit */val<int>) var_0)) : (((/* implicit */val<int>) var_0)))) == (((/* implicit */val<int>) var_5)))))) - (var_2))))));
 }
 static bool value_mismatch = false;
 unsigned long long int seed = 0;
