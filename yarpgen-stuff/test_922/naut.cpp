@@ -1,0 +1,52 @@
+/*
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
+Seed: 922
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=922
+*/
+
+#include <nautilus/core.hpp>
+#include <nautilus/Engine.hpp>
+#include <cassert>
+
+using namespace nautilus;
+
+#define max(a,b) \
+    ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+       _a > _b ? _a : _b; })
+#define min(a,b) \
+    ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+       _a < _b ? _a : _b; })
+void test(val<unsigned short> var_1, val<int> zero, val<short*> var_15, val<int*> var_16) {
+    *var_15 = ((/* implicit */val<short>) ((((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (val<signed char>)-115))) * (18446744073709551615ULL)));
+    *var_16 = ((/* implicit */val<int>) var_1);
+}
+static bool value_mismatch = false;
+unsigned long long int seed = 0;
+void hash(unsigned long long int *seed, unsigned long long int const v) {
+    *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
+}
+
+unsigned short var_1 = (unsigned short)59858;
+int zero = 0;
+short var_15 = (short)17961;
+int var_16 = 363650372;
+void init() {
+}
+
+void checksum() {
+    value_mismatch |= var_15 != (short)115;
+    value_mismatch |= var_16 != 59858;
+}
+int main() {
+  init();
+  engine::Options options;
+  options.setOption("engine.Compilation", false);
+  options.setOption("dump.all", true);
+  auto engine = engine::NautilusEngine(options);
+  auto function = engine.registerFunction(test);
+  function(var_1, zero, &var_15, &var_16);
+  checksum();
+  assert(!value_mismatch);
+}

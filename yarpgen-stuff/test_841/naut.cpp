@@ -1,0 +1,53 @@
+/*
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
+Seed: 841
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=841
+*/
+
+#include <nautilus/core.hpp>
+#include <nautilus/Engine.hpp>
+#include <cassert>
+
+using namespace nautilus;
+
+#define max(a,b) \
+    ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+       _a > _b ? _a : _b; })
+#define min(a,b) \
+    ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+       _a < _b ? _a : _b; })
+void test(val<unsigned short> var_0, val<unsigned short> var_6, val<int> zero, val<unsigned int*> var_11, val<unsigned char*> var_12) {
+    *var_11 -= ((/* implicit */val<unsigned int>) ((((/* implicit */val<bool>) (~(((/* implicit */val<int>) ((2769516147U) < (((/* implicit */val<unsigned int>) ((/* implicit */val<int>) (val<signed char>)-38))))))))) && (((/* implicit */val<bool>) (~(((/* implicit */val<int>) ((((/* implicit */val<long long int>) 2147483647)) < (9223372036854775793LL)))))))));
+    *var_12 = ((/* implicit */val<unsigned char>) ((((/* implicit */val<int>) var_6)) <= ((~(((/* implicit */val<int>) var_0))))));
+}
+static bool value_mismatch = false;
+unsigned long long int seed = 0;
+void hash(unsigned long long int *seed, unsigned long long int const v) {
+    *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
+}
+
+unsigned short var_0 = (unsigned short)19423;
+unsigned short var_6 = (unsigned short)58994;
+int zero = 0;
+unsigned int var_11 = 1346546330U;
+unsigned char var_12 = (unsigned char)1;
+void init() {
+}
+
+void checksum() {
+    value_mismatch |= var_11 != 1346546329U;
+    value_mismatch |= var_12 != (unsigned char)0;
+}
+int main() {
+  init();
+  engine::Options options;
+  options.setOption("engine.Compilation", false);
+  options.setOption("dump.all", true);
+  auto engine = engine::NautilusEngine(options);
+  auto function = engine.registerFunction(test);
+  function(var_0, var_6, zero, &var_11, &var_12);
+  checksum();
+  assert(!value_mismatch);
+}
