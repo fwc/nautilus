@@ -32,15 +32,21 @@ done
 
 for i in $(seq $NUM_CASES)
 do
-	wc -l test_$i/naut.cpp
+	if [ -f test_$i/naut.cpp ]
+	then
+		wc -l test_$i/naut.cpp
+	fi
 done | sort -n > test_sizes.txt
 
 tmp=$(mktemp)
 
 for i in $(seq $NUM_CASES)
 do
-	echo "add_executable(test_$i test_$i/naut.cpp)" >> "$tmp"
-	echo "target_link_libraries(test_$i PRIVATE nautilus)" >> "$tmp"
+	if [ -f test_$i/naut.cpp ]
+	then
+		echo "add_executable(test_$i test_$i/naut.cpp)" >> "$tmp"
+		echo "target_link_libraries(test_$i PRIVATE nautilus)" >> "$tmp"
+	fi
 done
 
 head test_sizes.txt
