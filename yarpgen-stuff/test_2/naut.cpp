@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 2
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=2
 */
@@ -24,7 +24,7 @@ void test(val<int> var_5, val<short> var_12, val<short> var_14, val<short> var_1
     for (val<short> i_0 = ((((/* implicit */val<int>) ((/* implicit */val<short>) var_5))) + (15271))/*1*/; i_0 < (val<short>)17/*17*/; i_0 += ((((/* implicit */val<int>) var_14)) + (14156))/*4*/) /* same iter space */
     {
         *var_18 *= ((/* implicit */val<short>) ((((-1581193855) + (2147483647))) << (((327597140) - (327597140)))));
-        *arr_4 [i_0] [13] = (val<short>)8192;
+        arr_4 [i_0] [13] = (val<short>)8192;
     }
     #pragma clang loop interleave(enable)
     #pragma clang loop vectorize(enable)
@@ -32,8 +32,8 @@ void test(val<int> var_5, val<short> var_12, val<short> var_14, val<short> var_1
     for (val<short> i_1 = ((((/* implicit */val<int>) ((/* implicit */val<short>) var_5))) + (15271))/*1*/; i_1 < (val<short>)17/*17*/; i_1 += ((((/* implicit */val<int>) var_14)) + (14156))/*4*/) /* same iter space */
     {
         *var_19 -= ((/* implicit */val<short>) ((((/* implicit */val<bool>) ((((/* implicit */val<bool>) var_5)) ? (((/* implicit */val<int>) (val<short>)-30524)) : (((/* implicit */val<int>) (val<short>)-12678))))) ? (((/* implicit */val<int>) (!(((/* implicit */val<bool>) -1581193854))))) : ((+(((/* implicit */val<int>) (val<short>)-8513))))));
-        *arr_7 [i_1] = var_12;
-        *var_20 = ((/* implicit */val<int>) min((var_20), (max(((+(((/* implicit */val<int>) (val<short>)-30524)))), (((2147483639) / (((/* implicit */val<int>) (val<short>)-15561))))))));
+        arr_7 [i_1] = var_12;
+        *var_20 = ((/* implicit */val<int>) min((*var_20), (max(((+(((/* implicit */val<int>) (val<short>)-30524)))), (((2147483639) / (((/* implicit */val<int>) (val<short>)-15561))))))));
     }
 }
 static bool value_mismatch = false;

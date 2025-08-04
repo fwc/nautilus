@@ -1,7 +1,7 @@
 /*
 yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 30
-Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --seed=30 --nautilus=true
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=30
 */
 
 #include <nautilus/core.hpp>
@@ -19,7 +19,7 @@ using namespace nautilus;
        __typeof__ (b) _b = (b); \
        _a < _b ? _a : _b; })
 void test(val<unsigned short> var_6, val<unsigned long long int> var_12, val<int> zero, val<int*> var_19, val<long long int*> var_20) {
-    *var_19 = ((/* implicit */val<int>) min((var_19), (((/* implicit */val<int>) var_6))));
+    *var_19 = ((/* implicit */val<int>) min((*var_19), (((/* implicit */val<int>) var_6))));
     *var_20 += ((/* implicit */val<long long int>) ((val<int>) max((((/* implicit */val<unsigned long long int>) (val<short>)28296)), (((((/* implicit */val<bool>) 3026189710U)) ? (var_12) : (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (val<unsigned char>)62))))))));
 }
 static bool value_mismatch = false;

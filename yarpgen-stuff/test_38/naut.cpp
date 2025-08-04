@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 38
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=38
 */
@@ -23,7 +23,7 @@ void test(val<int> var_0, val<int> var_5, val<unsigned short> var_7, val<unsigne
     /* vectorizable */
     for (val<unsigned char> i_0 = (val<unsigned char>)3/*3*/; i_0 < ((((/* implicit */val<int>) ((/* implicit */val<unsigned char>) ((var_5) >= (((/* implicit */val<int>) var_7)))))) + (10))/*10*/; i_0 += (val<unsigned char>)1/*1*/) 
     {
-        *var_10 = ((/* implicit */val<int>) max((var_10), (var_0)));
+        *var_10 = ((/* implicit */val<int>) max((*var_10), (var_0)));
         *var_11 = ((/* implicit */val<bool>) ((((var_5) + (2147483647))) << (((((/* implicit */val<int>) (val<unsigned short>)65526)) - (65526)))));
     }
     /* vectorizable */
@@ -35,24 +35,24 @@ void test(val<int> var_0, val<int> var_5, val<unsigned short> var_7, val<unsigne
         {
             if (((/* implicit */val<bool>) arr_3 [i_1 + 1] [i_1 - 1]))
             {
-                *arr_8 [i_1] [i_1 - 2] [i_2] = ((/* implicit */val<int>) (val<short>)2745);
-                *arr_9 [i_2] [(val<bool>)1] [i_1 - 1] = ((/* implicit */val<int>) ((val<unsigned int>) arr_7 [i_1 - 1]));
+                arr_8 [i_1] [i_1 - 2] [i_2] = ((/* implicit */val<int>) (val<short>)2745);
+                arr_9 [i_2] [(val<bool>)1] [i_1 - 1] = ((/* implicit */val<int>) ((val<unsigned int>) arr_7 [i_1 - 1]));
             }
 
-            *var_12 = ((/* implicit */val<int>) min((var_12), (((/* implicit */val<int>) ((arr_3 [i_1 - 2] [i_1 - 2]) >= (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (val<signed char>)74))))))));
+            *var_12 = ((/* implicit */val<int>) min((*var_12), (((/* implicit */val<int>) ((arr_3 [i_1 - 2] [i_1 - 2]) >= (((/* implicit */val<unsigned long long int>) ((/* implicit */val<int>) (val<signed char>)74))))))));
             *var_13 = ((/* implicit */val<signed char>) ((((/* implicit */val<bool>) var_8)) ? (((/* implicit */val<int>) (val<signed char>)67)) : (((/* implicit */val<int>) arr_2 [i_1 + 1] [i_1 + 1]))));
             if (((/* implicit */val<bool>) arr_4 [i_1]))
             {
-                *arr_10 [i_2] [i_2] = ((/* implicit */val<unsigned long long int>) arr_7 [11LL]);
+                arr_10 [i_2] [i_2] = ((/* implicit */val<unsigned long long int>) arr_7 [11LL]);
                 *var_14 = ((/* implicit */val<unsigned int>) (-(arr_5 [i_1 - 2] [i_1 - 1] [i_1 - 1])));
             }
 
-            *arr_11 [i_1] = ((/* implicit */val<signed char>) ((val<unsigned short>) arr_2 [i_1 - 2] [i_1 - 1]));
+            arr_11 [i_1] = ((/* implicit */val<signed char>) ((val<unsigned short>) arr_2 [i_1 - 2] [i_1 - 1]));
         }
-        *arr_12 [i_1] = ((/* implicit */val<unsigned long long int>) arr_7 [i_1]);
+        arr_12 [i_1] = ((/* implicit */val<unsigned long long int>) arr_7 [i_1]);
         *var_15 = ((((/* implicit */val<int>) arr_7 [(val<unsigned short>)7])) | (((/* implicit */val<int>) (val<signed char>)-80)));
         *var_16 = ((/* implicit */val<bool>) arr_6 [i_1 - 1]);
-        *arr_13 [i_1] = ((/* implicit */val<bool>) arr_7 [i_1 + 1]);
+        arr_13 [i_1] = ((/* implicit */val<bool>) arr_7 [i_1 + 1]);
     }
     *var_17 = ((/* implicit */val<signed char>) var_0);
 }

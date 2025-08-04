@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build 887b8f1 on 1980:01:01)
+yarpgen version 2.0 (build df0ddec on 1980:01:01)
 Seed: 49
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=49
 */
@@ -32,7 +32,7 @@ void test(val<unsigned int> var_0, val<bool> var_1, val<long long int> var_2, va
                 {
                     *var_12 = ((/* implicit */val<unsigned long long int>) var_8);
                     *var_13 = ((/* implicit */val<long long int>) (-(((((/* implicit */val<int>) (val<short>)32764)) ^ (((/* implicit */val<int>) (val<unsigned char>)0))))));
-                    *var_14 = ((/* implicit */val<unsigned int>) max((var_14), (((/* implicit */val<unsigned int>) (-(((val<int>) ((((/* implicit */val<bool>) arr_2 [i_0])) && (((/* implicit */val<bool>) 4158649262U))))))))));
+                    *var_14 = ((/* implicit */val<unsigned int>) max((*var_14), (((/* implicit */val<unsigned int>) (-(((val<int>) ((((/* implicit */val<bool>) arr_2 [i_0])) && (((/* implicit */val<bool>) 4158649262U))))))))));
                     *var_15 = ((/* implicit */val<short>) arr_6 [i_0] [i_2] [i_1 - 4] [i_0]);
                 }
                 *var_16 = ((/* implicit */val<unsigned int>) ((((/* implicit */val<bool>) var_0)) ? (((/* implicit */val<int>) var_1)) : (((/* implicit */val<int>) arr_2 [i_0]))));
