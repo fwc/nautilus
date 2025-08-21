@@ -1,5 +1,5 @@
 
-add_library(nautilus)
+add_library(nautilus SHARED)
 
 if (ENABLE_TESTS)
     # set path to test dir
