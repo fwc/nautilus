@@ -71,7 +71,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 else ()
     set(CMAKE_CXX_WARNINGS "${CMAKE_CXX_WARNINGS} -Woverflow")
 endif ()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_WARNINGS} -fpermissive -fno-omit-frame-pointer")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_WARNINGS} -fpermissive -fno-omit-frame-pointer -fPIC")
 
 if (ENABLE_TEST_COVERAGE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcoverage-mapping -fprofile-instr-generate")
