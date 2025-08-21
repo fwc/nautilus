@@ -1,5 +1,5 @@
 /*
-yarpgen version 2.0 (build df0ddec on 1980:01:01)
+yarpgen version 2.0 (build 5412501 on 2025:08:21)
 Seed: 719
 Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=719
 */
@@ -7,6 +7,9 @@ Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --seed=7
 #include <nautilus/core.hpp>
 #include <nautilus/Engine.hpp>
 #include <cassert>
+#ifndef USE_COMPILATION
+#define USE_COMPILATION true
+#endif
 
 using namespace nautilus;
 
@@ -46,7 +49,7 @@ void checksum() {
 int main() {
   init();
   engine::Options options;
-  options.setOption("engine.Compilation", false);
+  options.setOption("engine.Compilation", USE_COMPILATION);
   options.setOption("dump.all", true);
   auto engine = engine::NautilusEngine(options);
   auto function = engine.registerFunction(test);
