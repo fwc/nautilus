@@ -108,7 +108,6 @@ public:
 	BINARY_AND_ASSIGN_OPERATOR(&)
 	BINARY_AND_ASSIGN_OPERATOR(^)
 
-
 #define BINARY_COMPARISON_OPERATOR(OP)                                                                                 \
 	template <class T>                                                                                                 \
 	    requires std::is_convertible_v<T, baseType>                                                                    \
