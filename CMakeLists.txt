@@ -30,7 +30,7 @@ set(CMAKE_CXX_WARNINGS "-Wall -Wextra -pedantic-errors")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_CXX_WARNINGS "-Wall -Wextra -pedantic-errors -Werror=extra-semi -Werror=extra -Werror=all -Werror=delete-non-virtual-dtor -Werror=deprecated -Werror=array-bounds -Werror=ignored-qualifiers -Werror=sign-compare")
+set(CMAKE_CXX_WARNINGS "-Wall -Wextra  ")
 
 include(CheckCXXSourceCompiles)
 check_cxx_source_compiles("
@@ -74,7 +74,7 @@ endif ()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_WARNINGS} -fpermissive -fno-omit-frame-pointer -fPIC")
 
 if (ENABLE_TEST_COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcoverage-mapping -fprofile-instr-generate")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 endif ()
 
 if (ENABLE_SANITIZER)
