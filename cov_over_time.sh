@@ -24,7 +24,6 @@ time gcovr --gcov-executable "llvm-cov-19 gcov" --json $cov_out/ts_gcovr_all.jso
 find -name "*.gcda" -delete
 
 i=0
-j=1
 for it in $(find build/nautilus/test/yarpgened/ -type f -name "interp_test_*")
 do
     ct=$(echo $it | sed "s/interp/compil/")
@@ -34,11 +33,10 @@ do
     $ct > /dev/null 2> /dev/null || true
 
 
-    if [ $i = $j ]
+    if [ $(( i % 10 )) = 0 ]
     then
         pi=$(printf '%03d' $(( i / 10 )) )
         time gcovr --gcov-executable "llvm-cov-19 gcov" --json $cov_out/$pi-gcovr_all.json --json-summary $cov_out/$pi-gcovr_sum.json --html-details $cov_out/$pi-html/
-        j=$(( j * 2 ))
     fi
 
     i=$(( $i + 1 ))
