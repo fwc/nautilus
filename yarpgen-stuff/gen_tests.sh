@@ -26,7 +26,8 @@ for i in $(seq $NUM_CASES)
 do
 	mkdir -p test_$i	
 	pushd test_$i > /dev/null
-	$YARPGEN --nautilus=true --seed=$i
+	$YARPGEN --nautilus=true --use-compilation=true  --seed=$i
+	$YARPGEN --nautilus=true --use-compilation=false --seed=$i
 	popd > /dev/null
 done
 
@@ -42,10 +43,12 @@ tmp=$(mktemp)
 
 for i in $(seq $NUM_CASES)
 do
-	if [ -f test_$i/naut.cpp ]
+	if [ -f test_$i/naut_compil.cpp ]
 	then
-		echo "add_executable(test_$i test_$i/naut.cpp)" >> "$tmp"
-		echo "target_link_libraries(test_$i PRIVATE nautilus)" >> "$tmp"
+		echo "add_executable(compil_test_$i test_$i/naut_compil.cpp)" >> "$tmp"
+		echo "target_link_libraries(compil_test_$i PRIVATE nautilus)" >> "$tmp"
+		echo "add_executable(interp_test_$i test_$i/naut_interp.cpp)" >> "$tmp"
+		echo "target_link_libraries(interp_test_$i PRIVATE nautilus)" >> "$tmp"
 	fi
 done
 
