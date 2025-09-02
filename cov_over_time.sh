@@ -33,9 +33,12 @@ do
     $ct > /dev/null 2> /dev/null || true
 
 
-    if [ $(( i % 10 )) = 0 ]
+    if [ $i -le 10 ] \
+    || [ $i -le 100 ] && [ $(( i % 10 )) = 0 ] \
+    || [ $i -le 1000 ] && [ $(( i % 100 )) = 0 ] \
+    || [ $i -le 10000 ] && [ $(( i % 1000 )) = 0 ]
     then
-        pi=$(printf '%03d' $(( i / 10 )) )
+        pi=$(printf '%04d' $(( i )) )
         time gcovr --gcov-executable "llvm-cov-19 gcov" --json $cov_out/$pi-gcovr_all.json --json-summary $cov_out/$pi-gcovr_sum.json --html-details $cov_out/$pi-html/
     fi
 
@@ -43,3 +46,7 @@ do
 done
 
 time gcovr --gcov-executable "llvm-cov-19 gcov" --json $cov_out/$pi-gcovr_all.json --json-summary $cov_out/$pi-gcovr_sum.json --html-details $cov_out/$pi-html/
+
+cd $cov_out
+
+python3 ../summarize_cov.py baseline ts_gcovr_sum.json *-gcovr_sum.json
