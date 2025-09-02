@@ -8,3 +8,4 @@ add_subdirectory(benchmark)
 add_subdirectory(execution-tests)
 add_subdirectory(val-tests)
 
+add_subdirectory(yarpgened)
