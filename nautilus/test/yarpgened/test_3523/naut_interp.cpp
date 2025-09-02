@@ -1,0 +1,57 @@
+/*
+yarpgen version 2.0 (build 5412501 on 2025:08:21)
+Seed: 3523
+Invocation: /home/mgoerdel/inspos/yarpgen/build/yarpgen --nautilus=true --use-compilation=false --seed=3523
+*/
+
+#include <nautilus/core.hpp>
+#include <nautilus/Engine.hpp>
+#include <cassert>
+#ifndef USE_COMPILATION
+#define USE_COMPILATION false
+#endif
+
+using namespace nautilus;
+
+#define max(a,b) \
+    ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+       _a > _b ? _a : _b; })
+#define min(a,b) \
+    ({ __typeof__ (a) _a = (a); \
+       __typeof__ (b) _b = (b); \
+       _a < _b ? _a : _b; })
+void test(val<short> var_3, val<short> var_12, val<signed char> var_15, val<int> zero, val<unsigned short*> var_16, val<long long int*> var_17) {
+    *var_16 -= ((/* implicit */val<unsigned short>) var_12);
+    *var_17 = ((/* implicit */val<long long int>) max((((/* implicit */val<int>) var_15)), (((((/* implicit */val<bool>) (~(((/* implicit */val<int>) (val<short>)-2048))))) ? (((/* implicit */val<int>) var_3)) : (((/* implicit */val<int>) (((val<bool>)1) && (((/* implicit */val<bool>) 7087501196905251938LL)))))))));
+}
+static bool value_mismatch = false;
+unsigned long long int seed = 0;
+void hash(unsigned long long int *seed, unsigned long long int const v) {
+    *seed ^= v + 0x9e3779b9 + ((*seed)<<6) + ((*seed)>>2);
+}
+
+short var_3 = (short)-16430;
+short var_12 = (short)-13874;
+signed char var_15 = (signed char)-7;
+int zero = 0;
+unsigned short var_16 = (unsigned short)23703;
+long long int var_17 = 6304571298578392591LL;
+void init() {
+}
+
+void checksum() {
+    value_mismatch |= var_16 != (unsigned short)37577;
+    value_mismatch |= var_17 != -7LL;
+}
+int main() {
+  init();
+  engine::Options options;
+  options.setOption("engine.Compilation", USE_COMPILATION);
+  options.setOption("dump.all", true);
+  auto engine = engine::NautilusEngine(options);
+  auto function = engine.registerFunction(test);
+  function(var_3, var_12, var_15, zero, &var_16, &var_17);
+  checksum();
+  assert(!value_mismatch);
+}
