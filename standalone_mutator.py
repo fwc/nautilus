@@ -450,9 +450,9 @@ class StandaloneSourceFile:
         patch_lines = []
 
         # first line: we want to change the source file
-        patch_lines.append('--- ./{filename}'.format(filename=self.filename) + os.linesep)
+        patch_lines.append('--- ./{filename} {date}'.format(filename=self.filename, date=original_file_date) + os.linesep)
         # second line: the new file has the same name, but is changed now
-        patch_lines.append('+++ ./{filename}'.format(filename=self.filename) + os.linesep)
+        patch_lines.append('+++ ./{filename} {date}'.format(filename=self.filename, date=original_file_date) + os.linesep)
         # third line: summarize the changes regarding to displayed lines
         patch_lines.append('@@ -{lineno},{context_length} +{lineno},{context_length_shortened} @@'.format(
             lineno=line_number - len(context_before),
