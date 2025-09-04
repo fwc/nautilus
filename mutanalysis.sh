@@ -36,7 +36,7 @@ python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | g
 export working_tests=$(mktemp)
 export broken_tests=$(mktemp)
 
-find build/nautilus/test/yarpgened -type f -name "*_test_*" -print0 | xargs -0 -I {} sh -c "./{} > /dev/null 2> /dev/null && echo {} >> $working_tests || echo {} >> $broken_tests"
+find build/nautilus/test/yarpgened -type f -name "*_test_*" -print0 | xargs -0 --max-procs=$(nproc) -I {} sh -c "./{} > /dev/null 2> /dev/null && echo {} >> $working_tests || echo {} >> $broken_tests"
 
 log_out working tests written out to $working_tests
 log_out broken tests written out to $broken_tests
