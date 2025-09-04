@@ -50,23 +50,26 @@ def main():
     # Create subplots
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
-    axes[0].plot(tests_executed, lines, marker='o', label="YARPGen'ed tests")
+    axes[0].plot(tests_executed, lines, marker='x', label="YARPGen'ed tests")
     axes[0].axhline(y=ts_lines, color='r', linestyle='--', label="handwritten tests")
     axes[0].set_xlabel("No. of executed generated cases")
     axes[0].set_title("Line Coverage")
     axes[0].legend()
+    axes[0].set_ylim(ymin=0, ymax=1)
 
-    axes[1].plot(tests_executed, funct, marker='o', label="YARPGen'ed tests")
+    axes[1].plot(tests_executed, funct, marker='x', label="YARPGen'ed tests")
     axes[1].axhline(y=ts_funct, color='r', linestyle='--', label="handwritten tests")
     axes[1].set_xlabel("No. of executed generated cases")
     axes[1].set_title("Function Coverage")
     axes[1].legend()
+    axes[1].set_ylim(ymin=0, ymax=1)
 
-    axes[2].plot(tests_executed, brnch, marker='o', label="YARPGen'ed tests")
+    axes[2].plot(tests_executed, brnch, marker='x', label="YARPGen'ed tests")
     axes[2].axhline(y=ts_brnch, color='r', linestyle='--', label="handwritten tests")
     axes[2].set_xlabel("No. of executed generated cases")
     axes[2].set_title("Branch Coverage")
     axes[2].legend()
+    axes[2].set_ylim(ymin=0, ymax=1)
 
     # fig.suptitle("Comparing Data and Baseline")
     fig.suptitle("Coverage achieved by tests generated with YARPGen", fontsize=16)
