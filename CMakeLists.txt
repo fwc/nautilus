@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 include(CMakeDependentOption)
 
 option(ENABLE_LOGGING "Enable logging support" ON)
-option(ENABLE_STACKTRACE "Enable stacktrace support" ON)
+option(ENABLE_STACKTRACE "Enable stacktrace support" OFF)
 option(ENABLE_TESTS "Enable tests" ON)
 option(ENABLE_BENCHMARKS "Enables tracing and backend benchmarks" OFF)
 option(ENABLE_COMPILER "Enables tracing and backend compilers" ON)
