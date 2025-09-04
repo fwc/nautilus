@@ -56,7 +56,7 @@ do
     log_out checking $patch
     patched_file=$(head -n 1 $patch | cut -d" " -f 2)
     cp $patched_file $patched_file.bak
-    if ! patch $patched_file < $patch
+    if ! patch --forward $patched_file < $patch
     then
         log_out cannot apply $patch
         mv $patched_file.bak $patched_file
