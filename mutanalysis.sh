@@ -33,14 +33,15 @@ cmake --build build -j $(nproc)
 rm -rf mutations
 python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | grep "^naut" | grep -v test | grep -v "backends/bc" | grep -v "backends/cpp" | grep -v "backends/asmjit")
 
-working_tests=$(mktemp)
+export working_tests=$(mktemp)
+export broken_tests=$(mktemp)
 
-for ytest in $(find build/nautilus/test/yarpgened -type f -name "*_test_*")
-do
-    ./$ytest > /dev/null 2> /dev/null && echo $ytest >> $working_tests || true
-done
+find build/nautilus/test/yarpgened -type f -name "*_test_*" -print0 | xargs -0 -I {} sh -c "./{} > /dev/null 2> /dev/null && echo {} >> $working_tests || echo {} >> $broken_tests"
 
 log_out working tests written out to $working_tests
+log_out broken tests written out to $broken_tests
+
+exit
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
