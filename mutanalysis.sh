@@ -50,7 +50,12 @@ do
     fi
 
     log_out checking $patch
-    patch $(head -n 1 $patch | cut -d" " -f 2) < $patch
+    if ! patch $(head -n 1 $patch | cut -d" " -f 2) < $patch
+    then
+        log_out cannot apply $patch
+        git restore .
+        continue
+    fi
 
     if ! cmake --build build -j $(nproc) > /dev/null 2> /dev/null
     then
