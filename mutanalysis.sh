@@ -81,9 +81,6 @@ do
 
     log_out running yarpgen tests
 
-    for ytest in $(cat $working_tests)
-    do
-        ./$ytest > /dev/null 2> /dev/null || log_out mutant $patch killed by $(basename $ytest)
-    done
+    cat $working_tests | xargs --max-procs=$(nproc) -I {} sh -c "./{} > /dev/null 2> /dev/null || log_out mutant $patch killed by $(basename {})"
     mv $patched_file.bak $patched_file
 done
