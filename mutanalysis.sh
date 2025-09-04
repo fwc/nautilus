@@ -56,9 +56,9 @@ do
     fi
 
     log_out running ctest
-    if ! timeout --kill-after=10s 1m ctest -j $(nproc) --test-dir build/nautilus --stop-on-failure --quiet -O ctest.log
+    if ! timeout --kill-after=10s 1m ctest -j $(nproc) --test-dir build/nautilus --quiet --output-junit junit.xml
     then
-        for testcase in $(cat ctest.log | grep Failed | awk '$2 == "-" { print $3 }')
+        for testcase in $(cat build/nautilus/out.xml | grep 'status="fail"' | awk -F'"' '{ print $2 }' | sed "s/ /_/g")
         do
             log_out mutant $patch killed by ctest with $testcase
         done
