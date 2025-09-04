@@ -28,6 +28,7 @@ log_out() {
 
 cmake -B build
 
+rm -rf mutations
 python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | grep "^naut" | grep -v test | grep -v "backends/bc" | grep -v "backends/cpp" | grep -v "backends/asmjit")
 
 working_tests=$(mktemp)
