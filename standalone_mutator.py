@@ -311,7 +311,7 @@ class StandaloneSourceFile:
     """
     
     def __init__(self, file_path: str, first_line: int = 1, last_line: int = -1):
-        self.file_path = Path(file_path).resolve()
+        self.file_path = Path(file_path)
         self.filename = str(self.file_path)
         
         # Read file content
@@ -450,9 +450,9 @@ class StandaloneSourceFile:
         patch_lines = []
 
         # first line: we want to change the source file
-        patch_lines.append('--- {filename} {date}'.format(filename=self.filename, date=original_file_date) + os.linesep)
+        patch_lines.append('--- ./{filename} {date}'.format(filename=self.filename, date=original_file_date) + os.linesep)
         # second line: the new file has the same name, but is changed now
-        patch_lines.append('+++ {filename} {date}'.format(filename=self.filename, date=datetime.now()) + os.linesep)
+        patch_lines.append('+++ ./{filename} {date}'.format(filename=self.filename, date=datetime.now()) + os.linesep)
         # third line: summarize the changes regarding to displayed lines
         patch_lines.append('@@ -{lineno},{context_length} +{lineno},{context_length_shortened} @@'.format(
             lineno=line_number - len(context_before),
@@ -543,7 +543,7 @@ if __name__ == "__main__":
             if not path.exists():
                 print(f"Error: File '{file_path}' does not exist.", file=sys.stderr)
                 sys.exit(1)
-            validated_files.append(path.resolve())
+            validated_files.append(path)
         
         output_path = Path(arguments.output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
