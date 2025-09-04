@@ -39,9 +39,6 @@ done
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
-    echo $patch
-    break
-
     if ! git diff-files --quiet
     then
         log_out expected clean worktree
