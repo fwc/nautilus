@@ -68,7 +68,7 @@ int main() {
   init();
   engine::Options options;
   options.setOption("engine.Compilation", USE_COMPILATION);
-  options.setOption("dump.all", true);
+  options.setOption("dump.all", false);
   auto engine = engine::NautilusEngine(options);
   auto function = engine.registerFunction(test);
   function(var_3, var_4, var_6, var_8, var_9, var_10, var_11, zero, &var_15, &var_16, &var_17, &var_18, &var_19, &var_20);
