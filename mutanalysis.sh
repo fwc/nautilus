@@ -4,6 +4,12 @@ set -e
 set -u
 shopt -s nullglob
 
+if ! git diff-files --quiet
+then
+    log_out requires clean working tree
+    exit 1
+fi
+
 # export CCACHE_DIR=/ccache
 # 
 # if [ ! -d /out ] || [ ! -d /ccache ]
@@ -33,10 +39,22 @@ done
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
+    echo $patch
+    break
+
+    if ! git diff-files --quiet
+    then
+        log_out expected clean worktree
+        exit 1
+    fi
+
     log_out checking $patch
-    if ! python3 check_mutations.py $patch build/compile_commands.json || ! cmake --build build -j $(nproc) -- -k
+    patch $(head -n 1 $patch | cut -d" " -f 2) < $patch
+
+    if ! cmake --build build -j $(nproc) > /dev/null 2> /dev/null
     then
         log_out cannot build $patch
+        git restore .
         continue
     fi
 
@@ -54,6 +72,7 @@ do
 
     for ytest in $(cat $working_tests)
     do
-        ./$ytest > /dev/null 2> /dev/null || echo mutant $patch killed by $(basename $ytest)
+        ./$ytest > /dev/null 2> /dev/null || log_out mutant $patch killed by $(basename $ytest)
     done
+    git restore .
 done
