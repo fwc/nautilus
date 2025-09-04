@@ -4,6 +4,7 @@ set -e
 set -u
 shopt -s nullglob
 
+git status > /dev/null
 if ! git diff-files --quiet
 then
     echo requires clean working tree
