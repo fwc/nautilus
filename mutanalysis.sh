@@ -6,7 +6,7 @@ shopt -s nullglob
 
 if ! git diff-files --quiet
 then
-    log_out requires clean working tree
+    echo requires clean working tree
     exit 1
 fi
 
@@ -36,6 +36,8 @@ for ytest in $(find build/nautilus/test/yarpgened -type f -name "*_test_*")
 do
     ./$ytest > /dev/null 2> /dev/null && echo $ytest >> $working_tests || true
 done
+
+log_out working tests written out to $working_tests
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
