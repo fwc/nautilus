@@ -50,17 +50,19 @@ do
     fi
 
     log_out checking $patch
-    if ! patch $(head -n 1 $patch | cut -d" " -f 2) < $patch
+    patched_file=$(head -n 1 $patch | cut -d" " -f 2)
+    cp $patched_file $patched_file.bak
+    if ! patch $patched_file < $patch
     then
         log_out cannot apply $patch
-        git restore .
+        mv $patched_file.bak $patched_file
         continue
     fi
 
     if ! cmake --build build -j $(nproc) > /dev/null 2> /dev/null
     then
         log_out cannot build $patch
-        git restore .
+        mv $patched_file.bak $patched_file
         continue
     fi
 
@@ -80,5 +82,5 @@ do
     do
         ./$ytest > /dev/null 2> /dev/null || log_out mutant $patch killed by $(basename $ytest)
     done
-    git restore .
+    mv $patched_file.bak $patched_file
 done
