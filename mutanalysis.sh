@@ -43,6 +43,8 @@ log_out working tests written out to $working_tests
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
+    sleep 1
+    git status
     if ! git diff-files --quiet
     then
         log_out expected clean worktree
