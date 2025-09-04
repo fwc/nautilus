@@ -41,8 +41,6 @@ log_out broken tests written out to $broken_tests
 
 find build/nautilus/test/yarpgened -type f -name "*_test_*" -print0 | xargs -0 --max-procs=$(nproc) -I {} sh -c "./{} > /dev/null 2> /dev/null && echo {} >> $working_tests || echo {} >> $broken_tests"
 
-exit
-
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
     git status > /dev/null
