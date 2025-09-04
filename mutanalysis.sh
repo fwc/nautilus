@@ -27,6 +27,9 @@ log_out() {
     echo "$(date -Is) $*" | tee -a $out_log
 }
 
+export out_log
+export -f log_out
+
 cmake -B build
 cmake --build build -j $(nproc)
 
