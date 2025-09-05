@@ -44,9 +44,9 @@ log_out broken tests written out to $broken_tests
 
 find build/nautilus/test/yarpgened -type f -name "*_test_69*" -print0 | xargs -0 --max-procs=$(nproc) -I {} sh -c "timeout 1m ./{} > /dev/null 2> /dev/null && echo {} >> $working_tests || echo {} >> $broken_tests"
 
-ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctestcase::" $2 }' | sed "s/ /_/g"
+ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctestcase::" $2 }' | sed "s/ /_/g" >> $out_log
 
-cat $working_tests
+cat $working_tests >> $out_log
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
