@@ -38,7 +38,7 @@ ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctest
 
 cat $working_tests | tee -a $out_log
 
-for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
+for patch in $(find mutations -name "*.patch" | shuf)
 do
     git status > /dev/null
     if ! git diff-files --quiet
