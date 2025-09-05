@@ -30,7 +30,7 @@ log_out() {
 export out_log
 export -f log_out
 
-cmake -B build
+cmake -B build -GNinja
 cmake --build build -j $(nproc)
 
 rm -rf mutations
