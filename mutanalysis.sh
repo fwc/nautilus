@@ -11,27 +11,17 @@ then
     exit 1
 fi
 
-# export CCACHE_DIR=/ccache
-# 
-# if [ ! -d /out ] || [ ! -d /ccache ]
-# then
-#     echo expects /out and /ccache to exist
-#     exit 1
-# fi
-
-out_dir=$(pwd)/out/mutanalysis_$(date -u +"%Y-%m-%dT%H-%M-%S")
-mkdir -p $out_dir/crashes
-
-out_log=$out_dir/log.txt
+out_log=$(pwd)/mutanalysis_$(date -u +"%Y-%m-%dT%H-%M-%S").log
 log_out() {
     echo "$(date -Is) $*" | tee -a $out_log
 }
 
 export out_log
-export -f log_out
 
-cmake -B build -GNinja
+cmake -B build
 cmake --build build -j $(nproc)
+
+echo build donezo
 
 rm -rf mutations
 python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | grep "^naut" | grep -v test | grep -v "backends/bc" | grep -v "backends/cpp" | grep -v "backends/asmjit")
@@ -44,9 +34,9 @@ log_out broken tests written out to $broken_tests
 
 find build/nautilus/test/yarpgened -type f -name "*_test_*" -print0 | xargs -0 --max-procs=$(nproc) -I {} sh -c "timeout 1m ./{} > /dev/null 2> /dev/null && echo {} >> $working_tests || echo {} >> $broken_tests"
 
-ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctestcase::" $2 }' | sed "s/ /_/g" >> $out_log
+ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctestcase::" $2 }' | sed "s/ /_/g" | tee -a $out_log
 
-cat $working_tests >> $out_log
+cat $working_tests | tee -a $out_log
 
 for patch in $(find mutations -name "*.patch" -print0 | xargs -0 sha256sum | sort | awk '{ print $2 }')
 do
