@@ -4,6 +4,8 @@ from collections import defaultdict
 
 def main():
 
+    patches_per_file = {}
+
     yg_tests = set()
     ct_tests = set()
 
@@ -43,19 +45,32 @@ def main():
                 mutant_killed_by_ct[mutant].add(cttest)
                 ct_kills[cttest].add(mutant)
 
+            elif words[0] == "Generated":
+                if words[4] not in patches_per_file:
+                    patches_per_file[words[4]] = words[1]
+                elif patches_per_file[words[4]] != words[1] and "JITCompiler" not in words[4]:
+                    print(f"WARNING: differing no. of patches for file {words[4]}: {patches_per_file[words[4]]} != {words[1]}")
+
+
             elif words[1] == "checking":
                 all_mutations.add(words[2])
             elif words[1] == "cannot" and words[2] == "build":
                 cannot_build.add(words[3])
             elif words[1] == "cannot" and words[2] == "apply":
                 cannot_apply.add(words[3])
-            elif words[1] == "running":
+            elif words[1] == "running" or words[0] == "patching" or words[0] == "Hunk":
                 pass
             else:
                 print(l)
 
-    # for mutant, killers in mutant_killed_by.items():
-    #     print(mutant, len(killers))
+    print("--------------------------------------")
+    yg_unknown_tests = set(yg_kills.keys()).difference(yg_tests)
+    if yg_unknown_tests:
+        print("WARNING: uknown tests", yg_unknown_tests)
+    ct_unknown_tests = set(ct_kills.keys()).difference(ct_tests)
+    if ct_unknown_tests:
+        print("WARNING: uknown tests", ct_unknown_tests)
+    print("--------------------------------------")
 
     applyable = set(all_mutations).difference(cannot_apply)
     buildable = set(all_mutations).difference(cannot_apply).difference(cannot_build)
@@ -82,17 +97,12 @@ def main():
     
     print()
 
-    # yg_unknown_tests = set(yg_kills.keys()).difference(yg_tests)
-    # if yg_unknown_tests:
-    #     print("WARNING: uknown tests", yg_unknown_tests)
-    # ct_unknown_tests = set(ct_kills.keys()).difference(ct_tests)
-    # if ct_unknown_tests:
-    #     print("WARNING: uknown tests", ct_unknown_tests)
-
     yg_useless_tests = yg_tests.difference(yg_kills.keys())
     ct_useless_tests = ct_tests.difference(ct_kills.keys())
     print("no. of seemingly useless yg tests:", len(yg_useless_tests))
     print("no. of seemingly useless ct tests:", len(ct_useless_tests))
+
+    print()
 
     yg_top_killers = list(reversed(sorted(yg_kills.items(), key=lambda x: len(x[1]))))
     ct_top_killers = list(reversed(sorted(ct_kills.items(), key=lambda x: len(x[1]))))
