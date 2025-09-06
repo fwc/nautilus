@@ -24,7 +24,7 @@ cmake --build build -j $(nproc)
 echo build donezo
 
 rm -rf mutations
-python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | grep "^naut" | grep -v test | grep -v "backends/bc" | grep -v "backends/cpp" | grep -v "backends/asmjit")
+python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | grep "^naut" | grep -v test | grep -v "backends/bc" | grep -v "backends/cpp" | grep -v "backends/amsjit")
 
 export working_tests=$(mktemp)
 export broken_tests=$(mktemp)
