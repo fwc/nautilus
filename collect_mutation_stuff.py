@@ -23,8 +23,26 @@ def main():
             inp = f.read()
 
         for l in inp.split("\n"):
-            if not l:
+            if not l.strip():
                 continue
+
+            if "hunk FAILED" in l:
+                continue
+
+            if l[0] == "[":
+                continue
+
+            if l[0] == "^":
+                continue
+            if l[0] == "\x1b":
+                continue
+            if l[0] == " ":
+                continue
+            if l[0] == "/":
+                continue
+            if l[0] == "-":
+                continue
+
             words = l.split()
 
             if len(words) == 1:
@@ -36,6 +54,11 @@ def main():
             elif words[0] == "mutant":
                 mutant = words[1]
                 ygtest = words[4]
+                mutant_killed_by_yg[mutant].add(ygtest)
+                yg_kills[ygtest].add(mutant)
+            elif words[1] == "mutant" and words[3] == "killed" and "_test_" in words[5]:
+                mutant = words[2]
+                ygtest = words[5]
                 mutant_killed_by_yg[mutant].add(ygtest)
                 yg_kills[ygtest].add(mutant)
             
@@ -58,7 +81,9 @@ def main():
                 cannot_build.add(words[3])
             elif words[1] == "cannot" and words[2] == "apply":
                 cannot_apply.add(words[3])
-            elif words[1] == "running" or words[0] == "patching" or words[0] == "Hunk":
+            elif (words[1] == "running" or words[0] == "patching" or words[0] == "Hunk"
+                  or len(words) > 2 and words[2] == "generated." or words[0] == "Refresh"
+                  or words[0] == "mutanalysis.sh:"):
                 pass
             else:
                 print(l)
@@ -92,8 +117,18 @@ def main():
 
     print(f"{"mutant":<{mutant_len}} killed by")
     print(f"{"      ":<{mutant_len}} {"yg":>4} {"ct":>3}")
+
     for mutant in sorted(buildable):
-        print(f"{mutant:<{mutant_len}} {len(mutant_killed_by_yg[mutant]) if mutant in mutant_killed_by_yg else 0:>4} {len(mutant_killed_by_ct[mutant]) if mutant in mutant_killed_by_ct else 0:>3}")
+        if mutant_killed_by_yg[mutant] and not mutant_killed_by_ct[mutant]:
+            print(f"{mutant:<{mutant_len}} {len(mutant_killed_by_yg[mutant]) if mutant in mutant_killed_by_yg else 0:>4} {len(mutant_killed_by_ct[mutant]) if mutant in mutant_killed_by_ct else 0:>3}")
+    print()
+    for mutant in sorted(buildable):
+        if mutant_killed_by_ct[mutant] and not mutant_killed_by_yg[mutant]:
+            print(f"{mutant:<{mutant_len}} {len(mutant_killed_by_yg[mutant]) if mutant in mutant_killed_by_yg else 0:>4} {len(mutant_killed_by_ct[mutant]) if mutant in mutant_killed_by_ct else 0:>3}")
+    print()
+    for mutant in sorted(buildable):
+        if not mutant_killed_by_yg[mutant] and not mutant_killed_by_ct[mutant]:
+            print(f"{mutant:<{mutant_len}} {len(mutant_killed_by_yg[mutant]) if mutant in mutant_killed_by_yg else 0:>4} {len(mutant_killed_by_ct[mutant]) if mutant in mutant_killed_by_ct else 0:>3}")
     
     print()
 
@@ -115,6 +150,16 @@ def main():
     for test, kills in ct_top_killers[:5]:
         print(f"{test:<50} {len(kills)}")
 
+    with open("mutants.txt", "w", encoding="utf-8") as f:
+        f.write(f"{"mutant":<{mutant_len}} killed by")
+        f.write("\n")
+        f.write(f"{"      ":<{mutant_len}} {"yg":>4} {"ct":>3}")
+        f.write("\n")
+        for mutant in sorted(buildable):
+            f.write(f"{mutant:<{mutant_len}} {len(mutant_killed_by_yg[mutant]) if mutant in mutant_killed_by_yg else 0:>4} {len(mutant_killed_by_ct[mutant]) if mutant in mutant_killed_by_ct else 0:>3}")
+            f.write("\n")
+    print()
+    print("mutants.txt written")
 
 if __name__ == "__main__":
     main()
