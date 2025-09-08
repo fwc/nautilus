@@ -17,10 +17,16 @@ then
     exit 1
 fi
 
+if [ ! -d /out ]
+then
+    echo expects /out to exist
+    exit 1
+fi
+
 iters=$1
 skip=$2
 
-out_log=$(pwd)/mutanalysis_$(date -u +"%Y-%m-%dT%H-%M-%S").log
+out_log=/out/mutanalysis_$iters-$skip-$(date -u +"%Y-%m-%dT%H-%M-%S").log
 log_out() {
     echo "$(date -Is) $*" | tee -a $out_log
 }
@@ -30,7 +36,7 @@ export out_log
 cmake -B build
 cmake --build build -j $(nproc)
 
-echo build donezo
+log_out build donezo
 
 rm -rf mutations
 python3 standalone_mutator.py -o mutations $(git ls-files -- "*.cpp" "*.hpp" | grep "^naut" | grep -v test | grep -v "backends/bc" | grep -v "backends/cpp" | grep -v "backends/amsjit")
@@ -50,6 +56,7 @@ cat $working_tests | tee -a $out_log
 i=0
 for patch in $(cat shuffled_mutations.txt)
 do
+    i=$(( i + 1 ))
     if [ $i -le $skip ]
     then
         continue
@@ -98,5 +105,4 @@ do
 
     cat $working_tests | xargs --max-procs=$(nproc) -I {} timeout 1m sh -c './{} || echo mutant $patch killed by $(basename {}) with $?' | tee -a $out_log || true
     mv $patched_file.bak $patched_file
-    i=$(( i + 1 ))
 done
