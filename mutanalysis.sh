@@ -11,6 +11,15 @@ then
     exit 1
 fi
 
+if [ $# != 2 ]
+then
+    echo "Usage: $0 NUM_MUTANTS OFFSET_MUTANTS"
+    exit 1
+fi
+
+iters=$1
+skip=$2
+
 out_log=$(pwd)/mutanalysis_$(date -u +"%Y-%m-%dT%H-%M-%S").log
 log_out() {
     echo "$(date -Is) $*" | tee -a $out_log
@@ -38,8 +47,19 @@ ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctest
 
 cat $working_tests | tee -a $out_log
 
-for patch in $(find mutations -name "*.patch" | shuf)
+i=0
+for patch in $(cat shuffled_mutations.txt)
 do
+    if [ $i -le $skip ]
+    then
+        continue
+    fi
+
+    if [ $i -ge $(( $iters + $skip )) ]
+    then
+        exit
+    fi
+
     git status > /dev/null
     if ! git diff-files --quiet
     then
@@ -78,4 +98,5 @@ do
 
     cat $working_tests | xargs --max-procs=$(nproc) -I {} timeout 1m sh -c './{} || echo mutant $patch killed by $(basename {}) with $?' | tee -a $out_log || true
     mv $patched_file.bak $patched_file
+    i=$(( i + 1 ))
 done
