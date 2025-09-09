@@ -57,6 +57,7 @@ i=0
 for patch in $(cat shuffled_mutations.txt)
 do
     i=$(( i + 1 ))
+    export patch
     if [ $i -le $skip ]
     then
         continue
