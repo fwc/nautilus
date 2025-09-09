@@ -109,3 +109,5 @@ do
     cat $working_tests | xargs --max-procs=$(nproc) -I {} timeout 1m sh -c './{} || echo mutant $patch killed by $(basename {}) with $?' | tee -a $out_log || true
     mv $patched_file.bak $patched_file
 done
+
+log_out "all done"
