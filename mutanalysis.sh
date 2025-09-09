@@ -75,6 +75,8 @@ do
         exit 1
     fi
 
+    cmake --build build --target clean
+
     log_out checking $patch
     patched_file=$(head -n 1 $patch | cut -d" " -f 2)
     cp $patched_file $patched_file.bak
