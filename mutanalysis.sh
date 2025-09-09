@@ -63,7 +63,7 @@ do
         continue
     fi
 
-    if [ $i -ge $(( $iters + $skip )) ]
+    if [ $i -ge $(( $iters + $skip + 1 )) ]
     then
         exit
     fi
