@@ -51,6 +51,15 @@ find build/nautilus/test/yarpgened -type f -name "*_test_*" -print0 | xargs -0 -
 
 ctest --test-dir build/nautilus/ -N | grep "  Test" | awk -F": " '{ print "ctestcase::" $2 }' | sed "s/ /_/g" | tee -a $out_log
 
+if ! timeout --kill-after=10s 1m ctest -j $(nproc) --test-dir build/nautilus --quiet --output-junit junit.xml
+then
+    for testcase in $(cat build/nautilus/junit.xml | grep 'status="fail"' | awk -F'"' '{ print $2 }' | sed "s/ /_/g")
+    do
+        log_out "test $testcase failed unexpectedly!"
+    done
+    exit 1
+fi
+
 cat $working_tests | tee -a $out_log
 
 i=0
