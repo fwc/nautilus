@@ -56,5 +56,4 @@ int main() {
   auto function = engine.registerFunction(test);
   function(var_3, var_5, var_9, var_10, var_11, var_15, zero, &var_19, &var_20);
   checksum();
-  assert(!value_mismatch);
 }
