@@ -31,6 +31,8 @@ log_out() {
     echo "$(date -Is) $*" | tee -a $out_log
 }
 
+log_out "WITHOUT ASSERTIONS"
+
 export out_log
 
 cmake -B build
@@ -103,19 +105,19 @@ do
         continue
     fi
 
-    log_out running ctest
-    if ! timeout --kill-after=10s 1m ctest -j $(nproc) --test-dir build/nautilus --quiet --output-junit junit.xml
-    then
-        for testcase in $(cat build/nautilus/junit.xml | grep 'status="fail"' | awk -F'"' '{ print $2 }' | sed "s/ /_/g")
-        do
-            log_out mutant $patch killed by ctest with $testcase
-        done
-    fi
+    #log_out running ctest
+    #if ! timeout --kill-after=10s 1m ctest -j $(nproc) --test-dir build/nautilus --quiet --output-junit junit.xml
+    #then
+    #    for testcase in $(cat build/nautilus/junit.xml | grep 'status="fail"' | awk -F'"' '{ print $2 }' | sed "s/ /_/g")
+    #    do
+    #        log_out mutant $patch killed by ctest with $testcase
+    #    done
+    #fi
 
 
     log_out running yarpgen tests
 
-    cat $working_tests | xargs --max-procs=$(nproc) -I {} timeout 1m sh -c './{} || echo mutant $patch killed by $(basename {}) with $?' | tee -a $out_log || true
+    cat $working_tests | xargs --max-procs=$(nproc) -I {} timeout 1m sh -c './{} || echo mutwoa $patch killed by $(basename {}) with $?' | tee -a $out_log || true
     mv $patched_file.bak $patched_file
 done
 
