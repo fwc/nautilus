@@ -48,13 +48,21 @@ def collect_file(inp):
         if l[0] == "-":
             continue
 
+        if len(l) > 1000:
+            continue
+
         words = l.split()
 
         if len(words) == 1:
             if words[0].startswith("ctestcase::"):
                 ct_tests.add(words[0].split("::")[1])
-            else:
+            elif "_test_" in words[0]:
                 yg_tests.add(words[0])
+            elif words[0].count("%") > 6:
+                # ignore the shorter graphviz dump strings
+                continue
+            else:
+                print(words)
 
         elif words[0] == "mutant":
             mutant = words[1]
@@ -85,10 +93,12 @@ def collect_file(inp):
             cannot_apply.add(words[3])
         elif (words[1] == "running" or words[0] == "patching" or words[0] == "Hunk"
                   or len(words) > 2 and words[2] == "generated." or words[0] == "Refresh"
-                  or words[0] == "mutanalysis.sh:"):
+                  or words[0] == "mutanalysis.sh:"
+                  or words[0] == "graphviz"
+              ):
             pass
         else:
-            print(l)
+            print(l[:100])
 
     return patches_per_file, yg_tests, ct_tests, mutant_killed_by_yg, mutant_killed_by_ct, all_mutations, cannot_build, cannot_apply
 
@@ -278,9 +288,7 @@ def main():
 
     mutants_report = "report_mutants.txt"
     with open(mutants_report, "w", encoding="utf-8") as f:
-        f.write(f"{"mutant":<{mutant_len}} killed by")
-        f.write("\n")
-        f.write(f"{"      ":<{mutant_len}} {"yg":>4} {"ct":>3}")
+        f.write(f"{"mutant":<{mutant_len}} {"yg":>4} {"ct":>3}")
         f.write("\n")
         for mutant in sorted(buildable):
             f.write(f"{mutant:<{mutant_len}} {len(mutant_killed_by_yg[mutant]) if mutant in mutant_killed_by_yg else 0:>4} {len(mutant_killed_by_ct[mutant]) if mutant in mutant_killed_by_ct else 0:>3}")
