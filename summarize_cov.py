@@ -25,6 +25,9 @@ def summarize_file(arg):
         if not file["filename"].startswith("nautilus/include") and not file["filename"].startswith("nautilus/src"):
             continue
 
+        if "Engine.hpp" in file["filename"]:
+            continue
+
         lines_cov += file["line_covered"]
         lines_tot += file["line_total"]
         funct_cov += file["function_covered"]
@@ -48,7 +51,7 @@ def main():
     tests_executed, lines, funct, brnch = zip(*covs)
 
     # Create subplots
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+    fig, axes = plt.subplots(1, 2, figsize=(15, 5))
 
     axes[0].plot(tests_executed, lines, marker='x', label="YARPGen'ed tests")
     axes[0].axhline(y=ts_lines, color='r', linestyle='--', label="handwritten tests")
@@ -57,22 +60,22 @@ def main():
     axes[0].legend()
     axes[0].set_ylim(ymin=0, ymax=1)
 
-    axes[1].plot(tests_executed, funct, marker='x', label="YARPGen'ed tests")
-    axes[1].axhline(y=ts_funct, color='r', linestyle='--', label="handwritten tests")
+    # axes[1].plot(tests_executed, funct, marker='x', label="YARPGen'ed tests")
+    # axes[1].axhline(y=ts_funct, color='r', linestyle='--', label="handwritten tests")
+    # axes[1].set_xlabel("No. of executed generated cases")
+    # axes[1].set_title("Function Coverage")
+    # axes[1].legend()
+    # axes[1].set_ylim(ymin=0, ymax=1)
+
+    axes[1].plot(tests_executed, brnch, marker='x', label="YARPGen'ed tests")
+    axes[1].axhline(y=ts_brnch, color='r', linestyle='--', label="handwritten tests")
     axes[1].set_xlabel("No. of executed generated cases")
-    axes[1].set_title("Function Coverage")
+    axes[1].set_title("Branch Coverage")
     axes[1].legend()
     axes[1].set_ylim(ymin=0, ymax=1)
 
-    axes[2].plot(tests_executed, brnch, marker='x', label="YARPGen'ed tests")
-    axes[2].axhline(y=ts_brnch, color='r', linestyle='--', label="handwritten tests")
-    axes[2].set_xlabel("No. of executed generated cases")
-    axes[2].set_title("Branch Coverage")
-    axes[2].legend()
-    axes[2].set_ylim(ymin=0, ymax=1)
-
     # fig.suptitle("Comparing Data and Baseline")
-    fig.suptitle("Coverage achieved by tests generated with YARPGen", fontsize=16)
+    #fig.suptitle("Coverage achieved by tests generated with YARPGen", fontsize=16)
 
     plt.tight_layout()
 
