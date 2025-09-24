@@ -75,7 +75,7 @@ def main():
     axes[1].set_ylim(ymin=0, ymax=1)
 
     # fig.suptitle("Comparing Data and Baseline")
-    fig.suptitle("Coverage achieved by tests generated with YARPGen", fontsize=16)
+    #fig.suptitle("Coverage achieved by tests generated with YARPGen", fontsize=16)
 
     plt.tight_layout()
 
